@@ -1732,10 +1732,6 @@ export default function Checkout() {
 
   const checkoutDiscountRate = reportId ? buyNowReport?.discount_value : 0;
 
-  useEffect(() => {
-    console.log("buyNowReport updated", buyNowReport);
-  }, [buyNowReport]);
-
   if (success) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4">
