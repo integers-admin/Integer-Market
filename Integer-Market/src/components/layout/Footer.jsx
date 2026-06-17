@@ -40,7 +40,7 @@ export default function Footer() {
   return (
     <footer className="bg-slate-50 border-t border-slate-200" role="contentinfo">
       {/* Newsletter bar */}
-      <div className="border-b border-slate-200">
+      {/* <div className="border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
@@ -74,7 +74,7 @@ export default function Footer() {
             )}
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* ── Compliance / Trust strip ─────────────────────────── */}
       <div className="border-b border-slate-200 py-4 bg-slate-50">
@@ -173,7 +173,7 @@ export default function Footer() {
                 <span className="text-sm font-bold text-slate-900">ReportInShort</span>
               </div>
               <p className="text-xs text-slate-500 leading-relaxed">
-                Get 5 market snapshots free on trial, then unlock more.
+                Get 3 market snapshots free on trial, then unlock more.
               </p>
               <span className="inline-flex items-center gap-1 text-xs font-semibold text-primary group-hover:underline mt-auto">
                 Quick insights <ArrowRight size={10} aria-hidden="true" />

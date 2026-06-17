@@ -776,13 +776,15 @@ export default function Home() {
               className="hidden md:block w-px h-10 bg-slate-100 flex-shrink-0"
               aria-hidden="true"
             />
-            <div className="flex flex-wrap items-center justify-center md:justify-start gap-16 flex-1">
-              {clientLogos.map((logo) => (
+            <div className="flex flex-wrap items-center justify-between gap-16 flex-1">
+              {clientLogos.map((logo, index) => (
                 <img
                   key={logo.name}
                   src={logo.src}
                   alt={logo.name}
-                  className="h-8 w-auto object-contain opacity-60 hover:opacity-90 transition-opacity duration-200 grayscale hover:grayscale-0"
+                  className={`w-auto object-contain opacity-60 hover:opacity-90 transition-all duration-200 grayscale hover:grayscale-0 ${
+                    [0, 2, 4].includes(index) ? "h-12 scale-110" : "h-10"
+                  }`}
                   loading="lazy"
                 />
               ))}
@@ -986,7 +988,6 @@ export default function Home() {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
           >
             {recentData?.slice(0, 6)?.map((report) => {
-
               return (
                 <motion.div key={report.report_id}>
                   <motion.article
@@ -1430,7 +1431,7 @@ export default function Home() {
       </section>
 
       {/* ── TESTIMONIALS ─────────────────────────────────────── */}
-      <section
+      {/* <section
         className="py-20 bg-surface"
         aria-labelledby="testimonials-heading"
       >
@@ -1497,7 +1498,7 @@ export default function Home() {
             ))}
           </motion.div>
 
-          {/* Trust badges */}
+          
           <ScrollReveal className="mt-12">
             <div className="flex flex-wrap items-center justify-center gap-8">
               {[
@@ -1518,7 +1519,7 @@ export default function Home() {
             </div>
           </ScrollReveal>
         </div>
-      </section>
+      </section> */}
 
       {/* ── CTA ──────────────────────────────────────────────── */}
       <section

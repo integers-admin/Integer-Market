@@ -407,9 +407,9 @@ import {
   ArrowRight,
   FileText,
   Tag,
-  TicketPercent,
-  CheckCircle2,
-  AlertCircle,
+  // TicketPercent,
+  // CheckCircle2,
+  // AlertCircle,
 } from "lucide-react";
 import { useCart } from "../../context/CartContext";
 
@@ -482,17 +482,16 @@ export default function CartDrawer() {
     discount,
     discountRate,
     total,
-    couponCode,
-    couponError,
-    // appliedCouponLabel,
-    applyCoupon,
-    removeCoupon,
+    // couponCode,
+    // couponError,
+    // applyCoupon,
+    // removeCoupon,
   } = useCart();
 
   const router = useRouter();
 
-  const [couponInput, setCouponInput] = useState("");
-  const [couponSuccess, setCouponSuccess] = useState(false);
+  // const [couponInput, setCouponInput] = useState("");
+  // const [couponSuccess, setCouponSuccess] = useState(false);
 
   // Lock body scroll
   useEffect(() => {
@@ -512,12 +511,12 @@ export default function CartDrawer() {
   }, [setCartOpen]);
 
   // Reset coupon input when drawer closes
-  useEffect(() => {
-    if (!cartOpen) {
-      setCouponInput("");
-      setCouponSuccess(false);
-    }
-  }, [cartOpen]);
+  // useEffect(() => {
+  //   if (!cartOpen) {
+  //     setCouponInput("");
+  //     setCouponSuccess(false);
+  //   }
+  // }, [cartOpen]);
 
   // const handleApplyCoupon = async () => {
   //   const ok = await applyCoupon(couponInput);
@@ -530,24 +529,24 @@ export default function CartDrawer() {
   //   } else setCouponSuccess(false);
   // };
 
-  const handleApplyCoupon = async () => {
-    const ok = await applyCoupon(couponInput);
+  // const handleApplyCoupon = async () => {
+  //   const ok = await applyCoupon(couponInput);
 
-    console.log("coupon code ok:", ok);
+  //   console.log("coupon code ok:", ok);
 
-    if (ok) {
-      setCouponSuccess(true);
-      setCouponInput("");
-    } else {
-      setCouponSuccess(false);
-    }
-  };
+  //   if (ok) {
+  //     setCouponSuccess(true);
+  //     setCouponInput("");
+  //   } else {
+  //     setCouponSuccess(false);
+  //   }
+  // };
 
-  const handleRemoveCoupon = () => {
-    removeCoupon();
-    setCouponInput("");
-    setCouponSuccess(false);
-  };
+  // const handleRemoveCoupon = () => {
+  //   removeCoupon();
+  //   setCouponInput("");
+  //   setCouponSuccess(false);
+  // };
 
   const goToCheckout = () => {
     setCartOpen(false);
@@ -689,7 +688,7 @@ export default function CartDrawer() {
             {cartItems.length > 0 && (
               <div className="border-t border-slate-100 px-6 pt-4 pb-6 space-y-4">
                 {/* ── Coupon Code ─────────────────────────────── */}
-                <div>
+                {/* <div>
                   {couponCode ? (
                     <motion.div
                       initial={{ opacity: 0, y: -4 }}
@@ -706,9 +705,7 @@ export default function CartDrawer() {
                           <p className="text-xs font-bold text-green-700">
                             {couponCode} applied!
                           </p>
-                          {/* <p className="text-[10px] text-green-600">
-                            {appliedCouponLabel}
-                          </p> */}
+                          
                         </div>
                       </div>
                       <button
@@ -767,10 +764,10 @@ export default function CartDrawer() {
                       )}
                     </div>
                   )}
-                </div>
+                </div> */}
 
                 {/* ── Bulk discount badge ──────────────────────── */}
-                {discount > 0 && !couponCode && (
+                {discount > 0 && (
                   <div className="flex items-center gap-2 px-3 py-2 bg-amber-50 border border-amber-200 rounded-xl">
                     <Tag
                       size={13}
@@ -863,7 +860,7 @@ export default function CartDrawer() {
                   </div>
 
                   {/* Coupon Discount */}
-                  {couponCode && discount > 0 && (
+                  {/* {couponCode && discount > 0 && (
                     <div className="flex justify-between text-sm text-green-600">
                       <span className="flex items-center gap-1">
                         <TicketPercent size={12} />
@@ -871,7 +868,7 @@ export default function CartDrawer() {
                       </span>
                       <span className="font-semibold">- ${discount}</span>
                     </div>
-                  )}
+                  )} */}
 
                   {/* Taxes */}
                   <div className="flex justify-between text-xs text-slate-400">
@@ -883,7 +880,8 @@ export default function CartDrawer() {
                   <div className="flex justify-between border-t border-slate-100 pt-2">
                     <span className="font-bold text-slate-900">Total</span>
                     <span className="font-black text-xl text-slate-900">
-                      ${couponCode && discount > 0 ? total : subtotal}
+                      {/* ${couponCode && discount > 0 ? total : subtotal} */}
+                      ${total}
                     </span>
                   </div>
                 </div>

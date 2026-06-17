@@ -657,7 +657,7 @@ export default function Reports() {
                                 className="text-primary"
                                 aria-hidden="true"
                               />
-                              {report?.cagr} CAGR
+                              {report?.cagr}% CAGR
                             </span>
                             <span className="text-slate-200" aria-hidden="true">
                               |

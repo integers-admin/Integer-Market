@@ -176,7 +176,9 @@ export default function Signup() {
         </motion.div>
 
         <p className="text-xs text-white/40 relative z-10">
-          © {new Date().getFullYear()} Integer Market. All rights reserved.
+          © {new Date().getFullYear()} Integers Insights Private Limited. All
+          rights reserved. <br /> Trading as Integer Market · Market intelligence for
+          global decision-makers.
         </p>
       </div>
 

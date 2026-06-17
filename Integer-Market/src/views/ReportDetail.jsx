@@ -431,16 +431,16 @@
 //     setShowCheckout(true);
 //   };
 
-  // const handleAddToCart = () => {
-  //   addToCart(report);
-  //   setCartAdded(true);
-  //   setTimeout(() => setCartAdded(false), 2000);
-  // };
+// const handleAddToCart = () => {
+//   addToCart(report);
+//   setCartAdded(true);
+//   setTimeout(() => setCartAdded(false), 2000);
+// };
 
-  // const handleBuyNow = () => {
-  //   addToCart(report);
-  //   router.push("/checkout");
-  // };
+// const handleBuyNow = () => {
+//   addToCart(report);
+//   router.push("/checkout");
+// };
 
 //   const handlePurchaseSuccess = () => purchaseReport(report.id);
 
@@ -1123,28 +1123,6 @@
 //   );
 // }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // "use client";
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
@@ -1511,6 +1489,7 @@ const METHODOLOGY_CONTENT = {
 // }
 
 export default function ReportDetail({
+  amount,
   imgPath,
   title,
   subTitle,
@@ -1527,7 +1506,7 @@ export default function ReportDetail({
   subIndustry,
   pdfPath,
   seoSlug,
-  primaryTopic
+  primaryTopic,
 }) {
   const { slug } = useParams();
   const report = getReportBySlug(slug);
@@ -1581,14 +1560,25 @@ export default function ReportDetail({
   // };
 
   const handleAddToCart = () => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      router.push("/login");
+      return;
+    }
     addToCart(seoSlug);
     setCartAdded(true);
     setTimeout(() => setCartAdded(false), 2000);
   };
 
-  const handleBuyNow = () => {
-    addToCart(report);
-    router.push("/checkout");
+  // const handleBuyNow = () => {
+  //   // addToCart(report);
+  //   alert("checkout");
+  //   router.push("/checkout");
+  // };
+
+  const handleBuyNow = (slug) => {
+    router.push(`/checkout?reportId=${slug}`);
   };
 
   // const handlePurchaseSuccess = () => purchaseReport(report.id);
@@ -1621,9 +1611,7 @@ export default function ReportDetail({
               Reports
             </Link>
             <ChevronRight size={12} aria-hidden="true" />
-            <span
-              className="hover:text-primary transition-colors"
-            >
+            <span className="hover:text-primary transition-colors">
               {primaryTopic}
             </span>
             <ChevronRight size={12} aria-hidden="true" />
@@ -1636,7 +1624,6 @@ export default function ReportDetail({
             {/* Report cover image placeholder */}
             <div
               className="w-44 h-44 rounded-2xl flex-shrink-0 overflow-hidden border border-slate-100 shadow-sm"
-              
               aria-label="Report cover image placeholder - add product photo here"
             >
               <div className="w-full h-full flex flex-col items-center justify-center gap-2">
@@ -2082,7 +2069,7 @@ export default function ReportDetail({
                 <div className="mb-5">
                   <div className="flex items-baseline gap-2">
                     <span className="text-4xl font-black text-slate-900">
-                      $999
+                      ${amount}
                     </span>
                     <span className="text-sm text-slate-400">USD</span>
                   </div>
@@ -2098,7 +2085,7 @@ export default function ReportDetail({
                     {
                       icon: FileText,
                       label: "Pages",
-                      value: `${reportPages!=null?reportPages:""} pages`,
+                      value: `${reportPages != null ? reportPages : ""} pages`,
                     },
                     { icon: TrendingUp, label: "Format", value: "PDF" },
                     {
@@ -2139,37 +2126,27 @@ export default function ReportDetail({
                   </div>
                 ) : ( */}
 
-
-
-
-
-
-                  <div className="space-y-3">
-
-                    <button
-                      onClick={handleAddToCart}
-                      className={`w-full flex items-center justify-center gap-2 py-3.5 font-bold rounded-xl transition-all shadow-lg cursor-pointer ${
-                        isInCart(seoSlug) || cartAdded
-                          ? "bg-green-500 text-white hover:bg-green-600 shadow-green-200"
-                          : "bg-primary text-white hover:bg-primary-dark hover:shadow-primary/25"
-                      }`}
-                    >
-                      <ShoppingCart size={16} aria-hidden="true" />
-                      {isInCart(seoSlug) || cartAdded
-                        ? "Added to Cart ✓"
-                        : "Add to Cart"}
-                    </button>
-                    <button
-                      onClick={handleBuyNow}
-                      className="w-full flex items-center justify-center gap-2 py-3.5 text-sm text-white font-bold bg-slate-800 hover:bg-slate-900 rounded-xl transition-colors cursor-pointer shadow-md"
-                    >
-                      Buy Now
-                    </button>
-                  </div>
-
-
-
-
+                <div className="space-y-3">
+                  <button
+                    onClick={handleAddToCart}
+                    className={`w-full flex items-center justify-center gap-2 py-3.5 font-bold rounded-xl transition-all shadow-lg cursor-pointer ${
+                      isInCart(seoSlug) || cartAdded
+                        ? "bg-green-500 text-white hover:bg-green-600 shadow-green-200"
+                        : "bg-primary text-white hover:bg-primary-dark hover:shadow-primary/25"
+                    }`}
+                  >
+                    <ShoppingCart size={16} aria-hidden="true" />
+                    {isInCart(seoSlug) || cartAdded
+                      ? "Added to Cart ✓"
+                      : "Add to Cart"}
+                  </button>
+                  <button
+                    onClick={() => handleBuyNow(seoSlug)}
+                    className="w-full flex items-center justify-center gap-2 py-3.5 text-sm text-white font-bold bg-slate-800 hover:bg-slate-900 rounded-xl transition-colors cursor-pointer shadow-md"
+                  >
+                    Buy Now
+                  </button>
+                </div>
 
                 {/* Trust micro-copy */}
                 <div className="flex items-center justify-center gap-1 mt-3">

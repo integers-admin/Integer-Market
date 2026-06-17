@@ -213,6 +213,7 @@ export function CartProvider({ children }) {
   const [couponError, setCouponError] = useState("");
 
   const [discount, setDiscount] = useState(0);
+  const [discountRate,setDiscountRate] = useState("");
   const [total, setTotal] = useState(0);
 
   const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -326,6 +327,8 @@ export function CartProvider({ children }) {
   const applyCoupon = async (raw) => {
     const code = raw.trim().toUpperCase();
 
+    console.log("coupon code----: ",code);
+
     if (!code) {
       setCouponError("Please enter a coupon code.");
       return false;
@@ -348,7 +351,7 @@ export function CartProvider({ children }) {
         },
       );
 
-      console.log("response: ", response);
+      console.log("response-------------------------------: ", response);
 
       if (response?.status === 200) {
         // setCouponError("");
@@ -359,6 +362,7 @@ export function CartProvider({ children }) {
         setCouponCode(data.code);
 
         setDiscount(data.coupon_discount_cents || 0);
+        setDiscountRate(data.discount_value || 0)
 
         setTotal(data.total_cents || subtotal);
 
@@ -416,6 +420,7 @@ export function CartProvider({ children }) {
     cartCount,
     subtotal,
     discount,
+    discountRate,
     total,
     isInCart,
     getCartItems,
