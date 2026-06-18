@@ -1180,7 +1180,7 @@ function ContactStep({ data, onChange, errors, touched, onTouch }) {
         />
         <FieldError msg={touched.company ? errors.company : ""} />
       </div>
-      <div className="flex items-center gap-2.5 p-3 bg-slate-50 border border-slate-200 rounded-xl">
+      {/* <div className="flex items-center gap-2.5 p-3 bg-slate-50 border border-slate-200 rounded-xl">
         <User
           size={15}
           className="text-primary flex-shrink-0"
@@ -1195,7 +1195,7 @@ function ContactStep({ data, onChange, errors, touched, onTouch }) {
             Click here to login
           </Link>
         </p>
-      </div>
+      </div> */}
     </div>
   );
 }
@@ -1347,12 +1347,12 @@ function OrderSummary({
                 placeholder="Enter coupon"
                 value={couponInput}
                 onChange={(e) => setCouponInput(e.target.value.toUpperCase())}
-                className="flex-1 px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-primary"
+                className="border w-[75%] px-3 py-2 border-slate-200 rounded-xl text-sm focus:outline-none focus:border-primary"
               />
 
               <button
                 onClick={handleApplyCoupon}
-                className="px-4 py-2 bg-primary text-white rounded-xl text-sm font-semibold"
+                className="border w-[25%] px-2 py-2 bg-primary text-white rounded-xl text-sm font-semibold"
               >
                 Apply
               </button>

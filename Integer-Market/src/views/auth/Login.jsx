@@ -114,10 +114,14 @@ export default function Login() {
           className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-white/5 translate-y-1/3 -translate-x-1/4"
           aria-hidden="true"
         />
-
-        <Link href="/" aria-label="Integer Market home">
+        
+        {/* <Link href="/" aria-label="Integer Market home">
           <Logo light className="h-9 w-auto" />
-        </Link>
+        </Link> */}
+
+        <div className="h-10 w-25 cursor-pointer" onClick={()=>router.push("/")}>
+          <img src="./assets/int_mark_Logo.svg" alt="icon" />
+        </div>
 
         <motion.div
           initial={{ opacity: 0, y: 24 }}

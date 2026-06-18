@@ -1,17 +1,17 @@
 export const reportTypes = [
   {
-    id: 1, slug: 'competitive-landscape', name: 'Competitive Landscape', icon: 'BarChart3',
-    description: 'In-depth analysis of key players, market share, strategies, and competitive positioning.',
+    id: 1, slug: 'competitive-landscape', name: 'Competitive Analysis', icon: 'BarChart3',
+    description: 'In-depth analysis of competitors, market share, strategies, and market positioning .',
     detail: 'Understand exactly who your competitors are, how they are positioned, what their strengths are, and where market share gaps exist. Includes company profiles, SWOT analysis, and strategic recommendations.',
   },
   {
-    id: 2, slug: 'consumer-usage-insights', name: 'Consumer Usage Insights', icon: 'Users',
-    description: 'Consumer surveys, usage patterns, purchase behavior, and demand driver research.',
+    id: 2, slug: 'consumer-usage-insights', name: 'Consumer Behavior Insights', icon: 'Users',
+    description: 'Consumer surveys, usage patterns, purchase behavior, and consumer trends.',
     detail: 'Primary and secondary consumer research revealing who buys, why they buy, how they use the product, and what drives switching behavior. Includes demographic breakdowns and willingness-to-pay analysis.',
   },
   {
     id: 3, slug: 'import-export-trade', name: 'Import/Export Trade', icon: 'Globe2',
-    description: 'Trade flow analysis, HS code data, top exporters/importers, and pricing by origin.',
+    description: 'Trade data  analysis, HS code data, top exporters/importers, and pricing by origin.',
     detail: 'Detailed customs data and trade intelligence showing global import-export flows, price-per-unit benchmarks by origin country, leading exporters/importers, and year-on-year trade trends.',
   },
   {

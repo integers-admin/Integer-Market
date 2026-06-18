@@ -401,7 +401,7 @@ export default function Home() {
                     className="size-1.5 rounded-full bg-primary animate-pulse"
                     aria-hidden="true"
                   />
-                  Global Market Intelligence Platform
+                  Market Research Reports & Global Industry Analysis
                 </span>
               </motion.div>
 
@@ -410,17 +410,15 @@ export default function Home() {
                 variants={fadeInUp}
                 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-extrabold text-white leading-[1.08] tracking-tight mb-5"
               >
-                Market Data That Powers{" "}
-                <span className="text-primary">Strategic Decisions</span>
+                Market Research Reports{" "}
+                <span className="text-primary">For strategic decisions</span>
               </motion.h1>
 
               <motion.p
                 variants={fadeInUp}
                 className="text-base lg:text-lg text-white/75 leading-relaxed mb-8"
               >
-                1,000+ research reports across pharmaceuticals, nutraceuticals,
-                chemicals & more. Trusted by 20,000+ decision-makers in 85+
-                countries.
+                In-depth market research reports across consumer goods, health, wellness, ingredients & materials with market size, share, growth forecasts, and competitor insights.
               </motion.p>
 
               {/* Search with inline results */}
@@ -682,7 +680,7 @@ export default function Home() {
                 id="industries-heading"
                 className="text-4xl font-bold text-slate-900"
               >
-                Browse by Industry
+                Explore Our Extensive Industry Reports
               </h2>
               <p className="text-slate-500 mt-2 max-w-md">
                 Find reports most relevant to your market - from pharmaceuticals
@@ -818,23 +816,27 @@ export default function Home() {
                 id="ris-heading"
                 className="text-3xl sm:text-4xl font-extrabold text-white mb-4 leading-tight"
               >
-                Preview the intelligence
+                Market intelligence and trade data,
                 <br />
-                <span className="text-primary">before you buy.</span>
+                <span className="text-primary">in one quick-look platform.</span>
               </h2>
               <p className="text-slate-400 text-base leading-relaxed mb-6 max-w-lg">
-                ReportInShort is our companion platform with key metrics, market
-                snapshots, and data highlights from our research. Try 3 reports
-                free on trial - then unlock more with a paid plan.
+                ReportInShort pairs the key metrics and snapshots from Integers Market research with live trade data so you can size a market, check the numbers, and spot the movement before you invest in a full report.
               </p>
+
+              <p className="text-slate-400 text-base leading-relaxed mb-6 max-w-lg">
+                Try 3 reports free, then unlock the full library with a paid plan.
+              </p>
+
+
               <ul className="space-y-2.5 mb-8 text-left max-w-xs mx-auto lg:mx-0">
                 {[
-                  { icon: Eye, text: "Market snapshots & key metrics" },
+                  { icon: Eye, text: "Market snapshots, key metrics & forecasts" },
                   {
                     icon: BarChart,
-                    text: "Data highlights from 1,000+ reports",
+                    text: "Trade data and import/export insights",
                   },
-                  { icon: Zap, text: "New insights added weekly" },
+                  { icon: Zap, text: "New reports and data added weekly" },
                 ].map(({ icon: Icon, text }) => (
                   <li
                     key={text}
@@ -1542,9 +1544,9 @@ export default function Home() {
               id="cta-heading"
               className="text-5xl font-extrabold text-slate-900 mb-6"
             >
-              Ready to Make
+              Stop Guessing.
               <br />
-              Data-Driven Decisions?
+              Start Deciding with Data.
             </h2>
             <p className="text-lg text-white/75 mb-10 max-w-xl mx-auto">
               Join 20,000+ professionals who rely on Integer Market for

@@ -151,9 +151,13 @@ export default function Signup() {
           aria-hidden="true"
         />
 
-        <Link href="/" aria-label="Integer Market home">
+        {/* <Link href="/" aria-label="Integer Market home">
           <Logo light className="h-9 w-auto" />
-        </Link>
+        </Link> */}
+
+        <div className="h-10 w-25 cursor-pointer" onClick={()=>router.push("/")}>
+          <img src="./assets/int_mark_Logo.svg" alt="icon" />
+        </div>
 
         <motion.div
           initial={{ opacity: 0, y: 24 }}
