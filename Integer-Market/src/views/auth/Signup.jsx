@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
@@ -131,6 +131,13 @@ export default function Signup() {
     // }
   };
 
+  useEffect(() => {
+    let auth = localStorage.getItem("token");
+    if (auth) {
+      router.push("/");
+    }
+  }, []);
+
   return (
     <div className="min-h-screen flex">
       {/* Left panel - brand */}
@@ -177,8 +184,8 @@ export default function Signup() {
 
         <p className="text-xs text-white/40 relative z-10">
           © {new Date().getFullYear()} Integers Insights Private Limited. All
-          rights reserved. <br /> Trading as Integer Market · Market intelligence for
-          global decision-makers.
+          rights reserved. <br /> Trading as Integer Market · Market
+          intelligence for global decision-makers.
         </p>
       </div>
 

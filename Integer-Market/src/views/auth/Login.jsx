@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
@@ -89,6 +89,13 @@ export default function Login() {
     }
   };
 
+  useEffect(() => {
+    let auth = localStorage.getItem("token");
+    if (auth) {
+      router.push("/");
+    }
+  }, []);
+
   const inputBase =
     "w-full px-4 py-3 bg-white border rounded-xl text-slate-800 text-sm placeholder:text-slate-400 focus:outline-none transition-colors";
   const inputClass = (field) =>
@@ -140,8 +147,10 @@ export default function Login() {
         </motion.div>
 
         <p className="text-xs text-white/40 relative z-10">
-          © {new Date().getFullYear()} Integers Insights Private Limited. All rights reserved. <br />
-Trading as Integer Market · Market intelligence for global decision-makers.
+          © {new Date().getFullYear()} Integers Insights Private Limited. All
+          rights reserved. <br />
+          Trading as Integer Market · Market intelligence for global
+          decision-makers.
         </p>
       </div>
 

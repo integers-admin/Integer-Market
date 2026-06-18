@@ -327,8 +327,6 @@ export function CartProvider({ children }) {
   const applyCoupon = async (raw) => {
     const code = raw.trim().toUpperCase();
 
-    console.log("coupon code----: ",code);
-
     if (!code) {
       setCouponError("Please enter a coupon code.");
       return false;
@@ -350,8 +348,6 @@ export function CartProvider({ children }) {
           },
         },
       );
-
-      console.log("response-------------------------------: ", response);
 
       if (response?.status === 200) {
         // setCouponError("");

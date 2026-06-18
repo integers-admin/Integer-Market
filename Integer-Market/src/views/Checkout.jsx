@@ -1283,6 +1283,7 @@ function OrderSummary({
   discountRate,
   total,
   couponCode,
+  appliedCoupon,
   couponError,
   couponInput,
   setCouponInput,
@@ -1290,7 +1291,6 @@ function OrderSummary({
   handleRemoveCoupon,
   checkoutDiscountRate,
 }) {
-  console.log("checkoutDiscountRate: ", checkoutDiscountRate);
 
   return (
     <div className="bg-white border border-slate-100 rounded-2xl p-6 sticky top-24">
@@ -1319,7 +1319,7 @@ function OrderSummary({
       {/* Coupon Section */}
 
       <div className="mb-4">
-        {couponCode ? (
+        {couponCode || appliedCoupon ? (
           <div className="flex items-center justify-between px-3 py-2 bg-green-50 border border-green-200 rounded-xl">
             <div>
               <p className="text-sm font-semibold text-green-700">
@@ -1456,8 +1456,6 @@ export default function Checkout() {
         `${BASE_URL}/checkout/buy-now/summary?seo_slug=${reportId}`,
       );
 
-      console.log("response----()():", response);
-
       if (response.status === 200) {
         setBuyNowReport(response.data);
       }
@@ -1553,8 +1551,6 @@ export default function Checkout() {
           },
         );
 
-        console.log("res???????????????????????", res);
-
         setBuyNowReport((prev) => {
           if (!prev) return prev;
 
@@ -1572,7 +1568,6 @@ export default function Checkout() {
         setCouponInput("");
       } catch (err) {
         console.log("Coupon error:", err);
-
         toast.error(err.response?.data?.detail || "Invalid coupon code");
       }
     } else {
@@ -1886,6 +1881,7 @@ export default function Checkout() {
               discountRate={reportId ? checkoutDiscountRate : discountRate}
               total={checkoutTotal}
               couponCode={couponCode}
+              appliedCoupon={appliedCoupon}
               couponError={couponError}
               couponInput={couponInput}
               setCouponInput={setCouponInput}

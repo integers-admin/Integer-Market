@@ -66,7 +66,6 @@ export default function ReportDetailPage() {
   const getReportDetailPageData = async () => {
     try {
       let response = await axios.get(`${BASE_URL}/reports/${slug}/full`);
-      console.log("getReportDetailPageData: ", response);
       if (response?.status === 200) {
         setAmount(response?.data?.price_info?.amount_cents);
         setReportId(response?.data?.price_info?.report_unique_id);
