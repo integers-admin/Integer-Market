@@ -58,7 +58,7 @@ function IconComponent({ name, size = 20 }) {
 }
 
 const stats = [
-  { value: "1,000+", label: "Research Reports", icon: FileText },
+  { value: "100+", label: "Research Reports", icon: FileText },
   { value: "16", label: "Industries Covered", icon: TrendingUp },
   { value: "85+", label: "Countries Tracked", icon: Globe },
   { value: "20,000+", label: "Companies Tracked", icon: Users },
@@ -411,7 +411,7 @@ export default function Home() {
                 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-extrabold text-white leading-[1.08] tracking-tight mb-5"
               >
                 Market Research Reports{" "}
-                <span className="text-primary">For strategic decisions</span>
+                <span className="text-primary">for Strategic Decisions</span>
               </motion.h1>
 
               <motion.p
@@ -586,10 +586,10 @@ export default function Home() {
                         style={{ transform: `rotate(${p.rotate})` }}
                       >
                         <div className="flex items-center justify-between mb-2">
-                          <span className="text-[10px] text-primary font-bold truncate mr-1">
+                          <span className="text-[10px] text-white font-bold truncate mr-1">
                             {r?.sub_industry}
                           </span>
-                          <span className="size-1.5 rounded-full bg-primary flex-shrink-0 animate-pulse" />
+                          <span className="size-1.5 rounded-full bg-white flex-shrink-0 animate-pulse" />
                         </div>
                         <p className="text-[11px] font-semibold text-white/95 leading-snug line-clamp-2 mb-2">
                           {r?.title}
@@ -599,7 +599,7 @@ export default function Home() {
                             ${r?.market_size}
                           </div>
                           <div className="flex items-center gap-1 mt-0.5">
-                            <TrendingUp size={9} className="text-primary" />
+                            <TrendingUp size={9} className="text-white" />
                             <span className="text-[10px] text-white/70">
                               {r?.cagr}% CAGR
                             </span>
@@ -1549,7 +1549,7 @@ export default function Home() {
               Start Deciding with Data.
             </h2>
             <p className="text-lg text-white/75 mb-10 max-w-xl mx-auto">
-              Join 20,000+ professionals who rely on Integer Market for
+              Join professionals who rely on Integer Market for
               strategic market intelligence. Buy only the reports you need - no
               subscriptions, no commitments.
             </p>

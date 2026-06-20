@@ -22,8 +22,8 @@ import { toast } from "react-toastify";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const features = [
-  { icon: BarChart2, text: "1,200+ market research reports" },
-  { icon: Shield, text: "Verified primary data sources" },
+  { icon: BarChart2, text: "100+ market research reports" },
+  { icon: Shield, text: "Verified data sources" },
   { icon: Globe, text: "Coverage across 85+ countries" },
   { icon: CheckCircle, text: "Instant PDF download on purchase" },
 ];
@@ -133,8 +133,7 @@ export default function Login() {
             Intelligence that drives better business decisions
           </h2>
           <p className="text-white/70 mb-10 leading-relaxed">
-            Join 5,000+ professionals who rely on Integer Market for strategic
-            market intelligence across pharma, nutraceuticals, and ingredients.
+            In-depth market research reports across consumer goods, health, wellness, ingredients & materials with market size, share, growth forecasts, and competitor insights.
           </p>
           <ul className="space-y-4" role="list">
             {features.map(({ icon: Icon, text }) => (

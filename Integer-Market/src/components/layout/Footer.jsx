@@ -105,7 +105,7 @@ export default function Footer() {
               <Logo className="h-9 w-auto mb-4" />
             </Link>
             <p className="text-sm text-slate-500 leading-relaxed mb-6 max-w-xs">
-              Actionable market intelligence across pharma, nutraceuticals, chemicals, and 13 more industries. Trusted by 20,000+ companies globally.
+              In-depth market research reports across consumer goods, health, wellness, ingredients & materials with market size, share, growth forecasts, and competitor insights.
             </p>
             <div className="flex items-center gap-3">
               <a

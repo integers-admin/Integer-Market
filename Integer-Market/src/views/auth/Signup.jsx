@@ -22,11 +22,11 @@ import { toast } from "react-toastify";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-const benefits = [
-  { icon: BarChart2, text: "Instant access to 1,200+ reports" },
-  { icon: CheckCircle, text: "Download purchased reports anytime" },
-  { icon: Shield, text: "Verified, primary-research data" },
+const features = [
+  { icon: BarChart2, text: "100+ market research reports" },
+  { icon: Shield, text: "Verified data sources" },
   { icon: Globe, text: "Coverage across 85+ countries" },
+  { icon: CheckCircle, text: "Instant PDF download on purchase" },
 ];
 
 function getPasswordStrength(pw) {
@@ -166,14 +166,13 @@ export default function Signup() {
           className="relative z-10"
         >
           <h2 className="text-3xl font-bold text-white mb-4 leading-tight">
-            Start making data-driven decisions
+            Intelligence that drives better business decisions
           </h2>
           <p className="text-white/70 mb-10 leading-relaxed">
-            Join 5,000+ professionals who rely on Integer Market for strategic
-            market intelligence across pharma, nutraceuticals, and ingredients.
+            In-depth market research reports across consumer goods, health, wellness, ingredients & materials with market size, share, growth forecasts, and competitor insights.
           </p>
           <ul className="space-y-4" role="list">
-            {benefits.map(({ icon: Icon, text }) => (
+            {features.map(({ icon: Icon, text }) => (
               <li key={text} className="flex items-center gap-3">
                 <div className="size-8 rounded-lg bg-white/15 flex items-center justify-center flex-shrink-0">
                   <Icon size={15} className="text-white" aria-hidden="true" />
