@@ -3,6 +3,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useCart } from "./CartContext";
+import { jwtDecode } from "jwt-decode";
 
 const AuthContext = createContext(null);
 
@@ -49,7 +50,7 @@ export function AuthProvider({ children }) {
 
   const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
-  const { clearCart,getCartItems } = useCart();
+  const { clearCart, getCartItems } = useCart();
 
   // const checkAuth = async () => {
   //   try {
@@ -121,17 +122,74 @@ export function AuthProvider({ children }) {
     }
   };
 
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   const user = localStorage.getItem("user");
+
+  //   // console.log("user use: ",user);
+
+  //   if (token && user) {
+  //     setUser(user);
+  //   }
+
+  //   setIsLoading(false);
+  // }, []);
+
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const user = localStorage.getItem("user");
+    const storedUser = localStorage.getItem("user");
 
-    // console.log("user use: ",user);
+    let logoutTimer;
 
-    if (token && user) {
-      setUser(user);
+    if (!token || !storedUser) {
+      setIsLoading(false);
+      return;
+    }
+
+    try {
+
+      const decoded = jwtDecode(token);
+
+      if (!decoded?.exp) {
+        throw new Error("Invalid token");
+      }
+
+      const expiryTime = decoded.exp * 1000;
+      const currentTime = Date.now();
+
+      if (expiryTime <= currentTime) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        clearCart();
+        setUser(null);
+        setIsLoading(false);
+        return;
+      }
+
+      setUser(JSON.parse(storedUser));
+
+      logoutTimer = setTimeout(() => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        clearCart();
+        setUser(null);
+        toast.info("Token expired. Please login again.");
+      }, expiryTime - currentTime);
+    } catch (error) {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      clearCart();
+      setIsLoading(false);
+      setUser(null);
     }
 
     setIsLoading(false);
+    
+    return () => {
+      if (logoutTimer) {
+        clearTimeout(logoutTimer);
+      }
+    };
   }, []);
 
   // const signup = async (data) => {
