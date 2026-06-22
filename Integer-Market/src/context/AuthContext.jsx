@@ -2,6 +2,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useCart } from "./CartContext";
 
 const AuthContext = createContext(null);
 
@@ -47,6 +48,8 @@ export function AuthProvider({ children }) {
   const [isLoading, setIsLoading] = useState(true);
 
   const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+
+  const { clearCart,getCartItems } = useCart();
 
   // const checkAuth = async () => {
   //   try {
@@ -97,6 +100,7 @@ export function AuthProvider({ children }) {
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(userData));
         setUser(userData);
+        await getCartItems();
         return true;
       }
 
@@ -174,11 +178,41 @@ export function AuthProvider({ children }) {
 
   // const logout = () => setUser(null);
 
-  const logout = async () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
+  // const logout = async () => {
+  //   localStorage.removeItem("token");
+  //   localStorage.removeItem("user");
 
-    setUser(null);
+  //   setUser(null);
+  // };
+
+  const logout = async () => {
+    try {
+      const token = localStorage.getItem("token");
+
+      const response = await axios.post(
+        `${BASE_URL}/checkout/logout`,
+        {},
+        {
+          headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      // console.log("logout response: ", response);
+
+      if (response.status === 200) {
+        clearCart();
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        setUser(null);
+        toast.success("Logout successful");
+      }
+    } catch (error) {
+      console.error("Logout failed:", error);
+      toast.error("Logout failed");
+    }
   };
 
   /**

@@ -1627,7 +1627,7 @@ export default function ReportDetail({
               aria-label="Report cover image placeholder - add product photo here"
             >
               <div className="w-full h-full flex flex-col items-center justify-center gap-2">
-                {imgPath && <img src={imgPath} alt="image" className="" />}
+                {imgPath && <img src={imgPath} alt="image" className="h-full w-full" />}
                 {/* <div
                   className="size-14 rounded-xl flex items-center justify-center"
                   style={{ backgroundColor: `${industryColor}15` }}

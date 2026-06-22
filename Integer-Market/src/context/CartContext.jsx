@@ -213,7 +213,7 @@ export function CartProvider({ children }) {
   const [couponError, setCouponError] = useState("");
 
   const [discount, setDiscount] = useState(0);
-  const [discountRate,setDiscountRate] = useState("");
+  const [discountRate, setDiscountRate] = useState("");
   const [total, setTotal] = useState(0);
 
   const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -358,7 +358,7 @@ export function CartProvider({ children }) {
         setCouponCode(data.code);
 
         setDiscount(data.coupon_discount_cents || 0);
-        setDiscountRate(data.discount_value || 0)
+        setDiscountRate(data.discount_value || 0);
 
         setTotal(data.total_cents || subtotal);
 
@@ -384,11 +384,11 @@ export function CartProvider({ children }) {
   // };
 
   const removeCoupon = () => {
-  setCouponCode("");
-  setCouponError("");
-  setDiscount(0);
-  setTotal(subtotal);
-};
+    setCouponCode("");
+    setCouponError("");
+    setDiscount(0);
+    setTotal(subtotal);
+  };
 
   // Pricing
   const cartCount = cartItems.length;
@@ -399,31 +399,31 @@ export function CartProvider({ children }) {
   }, []);
 
   useEffect(() => {
-  if (!couponCode) {
-    setTotal(subtotal);
-  }
-}, [subtotal, couponCode]);
+    if (!couponCode) {
+      setTotal(subtotal);
+    }
+  }, [subtotal, couponCode]);
 
   return (
     <CartContext.Provider
       value={{
-         cartItems,
-    cartOpen,
-    setCartOpen,
-    addToCart,
-    removeFromCart,
-    clearCart,
-    cartCount,
-    subtotal,
-    discount,
-    discountRate,
-    total,
-    isInCart,
-    getCartItems,
-    couponCode,
-    couponError,
-    applyCoupon,
-    removeCoupon,
+        cartItems,
+        cartOpen,
+        setCartOpen,
+        addToCart,
+        removeFromCart,
+        clearCart,
+        cartCount,
+        subtotal,
+        discount,
+        discountRate,
+        total,
+        isInCart,
+        getCartItems,
+        couponCode,
+        couponError,
+        applyCoupon,
+        removeCoupon,
       }}
     >
       {children}
