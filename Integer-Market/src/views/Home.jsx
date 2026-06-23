@@ -1217,13 +1217,13 @@ export default function Home() {
                       </span>
                     ))}
                   </div>
-                  <Link
+                  {/* <Link
                     href="/our-researchers"
                     className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary-dark transition-colors"
                   >
                     Meet the research team{" "}
                     <ArrowRight size={15} aria-hidden="true" />
-                  </Link>
+                  </Link> */}
                 </div>
 
                 {/* Real analyst photos */}
