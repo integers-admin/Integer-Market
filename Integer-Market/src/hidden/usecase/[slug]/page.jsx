@@ -1,5 +1,5 @@
-import UseCasePage from '../../../../views/UseCasePage'
-import { useCases } from '../../../../data/useCases'
+import UseCasePage from '../../../views/UseCasePage'
+import { useCases } from '../../../data/useCases'
 
 export const revalidate = 3600  // ISR: revalidate every hour
 

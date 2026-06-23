@@ -9,7 +9,7 @@ const links = {
   Reports: [
     { label: 'All Reports', to: '/report' },
     { label: 'Research Methodology', to: '/research-methodology' },
-    { label: 'Our Researchers', to: '/our-researchers' },
+    // { label: 'Our Researchers', to: '/our-researchers' },
   ],
   Industries: [
     { label: 'Consumer Goods', to: '/industry/consumer-goods' },

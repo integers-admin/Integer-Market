@@ -201,7 +201,7 @@ export default function AboutUs() {
         {/* ── RESEARCH TEAM ─────────────────────────────────────── */}
         <div className="bg-white border border-slate-100 rounded-2xl p-8 lg:p-12 mb-20">
           <ScrollReveal className="text-center mb-10">
-            <span className="inline-block text-xs font-semibold text-primary uppercase tracking-widest mb-3">40+ Specialists</span>
+            {/* <span className="inline-block text-xs font-semibold text-primary uppercase tracking-widest mb-3">40+ Specialists</span> */}
             <h2 className="text-3xl font-bold text-slate-900">Our Research Analysts</h2>
             <p className="text-slate-500 mt-2 max-w-xl mx-auto">Each report is assigned to a specialist with direct industry experience - from synthetic chemistry to trade economics.</p>
           </ScrollReveal>
@@ -229,26 +229,25 @@ export default function AboutUs() {
             ))}
           </motion.div>
 
-          <div className="text-center mt-10">
+          {/* <div className="text-center mt-10">
             <Link
               href="/our-researchers"
               className="inline-flex items-center gap-2 px-6 py-3 border border-primary/30 text-primary text-sm font-semibold rounded-xl hover:bg-primary/5 transition-colors"
             >
               View Full Research Team <ArrowRight size={15} aria-hidden="true" />
             </Link>
-          </div>
+          </div> */}
         </div>
 
         {/* Timeline */}
-        <ScrollReveal className="text-center mb-8">
+        {/* <ScrollReveal className="text-center mb-8">
           <h2 className="text-3xl font-bold text-slate-900">Our Journey</h2>
-        </ScrollReveal>
-        <div className="relative max-w-2xl mx-auto mb-20">
+        </ScrollReveal> */}
+        {/* <div className="relative max-w-2xl mx-auto mb-20"> */}
           {/* Vertical connector line - z-0 so year boxes sit above it */}
-          <div className="absolute left-8 top-0 bottom-0 w-px bg-slate-200" style={{ zIndex: 0 }} aria-hidden="true" />
+          {/* <div className="absolute left-8 top-0 bottom-0 w-px bg-slate-200" style={{ zIndex: 0 }} aria-hidden="true" />
           <div className="space-y-6">
             {milestones.map((m, i) => (
-              /* Plain flex row - year box is NOT inside an animated div so z-10 works correctly */
               <div key={m.year} className="flex gap-6">
                 <div className="relative z-10 flex-shrink-0" style={{ zIndex: 10 }}>
                   <div className="size-16 rounded-xl bg-white border border-primary/20 shadow-sm flex items-center justify-center">
@@ -263,7 +262,7 @@ export default function AboutUs() {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* CTA */}
         <ScrollReveal>

@@ -1,4 +1,4 @@
-import OurResearchers from '../../../views/OurResearchers'
+import OurResearchers from '../../views/OurResearchers'
 
 export const metadata = {
   title: 'Our Researchers',
