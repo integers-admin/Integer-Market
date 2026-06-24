@@ -60,84 +60,202 @@
 //   return <IndustryPage />;
 // }
 
-"use client";
+// // wo
+// "use client";
 
-import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
-import axios from "axios";
+// import { useEffect, useState } from "react";
+// import { useParams } from "next/navigation";
+// import axios from "axios";
+// import IndustryPage from "../../../../views/IndustryPage";
+
+// export default function IndustryPageRoute() {
+//   const { slug } = useParams();
+
+//   const [industryReports, setIndustryReports] = useState(null);
+//   const [loading, setLoading] = useState(true);
+
+//   const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+
+//   useEffect(() => {
+//     const getIndustryReportsData = async () => {
+//       try {
+//         setLoading(true);
+
+//         const token = localStorage.getItem("token");
+
+//         const response = await axios.get(
+//           `${BASE_URL}/industry/reports?industry=${slug}`,
+//           {
+//             headers: {
+//               Authorization: `Bearer ${token}`,
+//             },
+//           },
+//         );
+
+//         console.log("getIndustryReportsData response:", response);
+//         if (response?.status === 200) {
+//           setIndustryReports(response?.data);
+//         }
+//       } catch (error) {
+//         console.log("Something went wrong:", error);
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+
+//     if (slug) {
+//       getIndustryReportsData();
+//     }
+//   }, [slug]);
+
+//   useEffect(() => {
+//     if (!industryReports?.name) return;
+
+//     document.title = `${industryReports.name} | Market Research Reports`;
+
+//     const description = industryReports?.description
+//       ? `${industryReports.description} Browse ${
+//           industryReports.total || 0
+//         }+ reports for actionable market intelligence.`
+//       : "Browse market research reports by industry.";
+
+//     let metaDescription = document.querySelector('meta[name="description"]');
+
+//     if (!metaDescription) {
+//       metaDescription = document.createElement("meta");
+//       metaDescription.name = "description";
+//       document.head.appendChild(metaDescription);
+//     }
+
+//     metaDescription.content = description;
+
+//     let canonical = document.querySelector('link[rel="canonical"]');
+
+//     if (!canonical) {
+//       canonical = document.createElement("link");
+//       canonical.rel = "canonical";
+//       document.head.appendChild(canonical);
+//     }
+
+//     canonical.href = `https://integermarket.com/industry/${slug}`;
+//   }, [industryReports, slug]);
+
+//   return <IndustryPage industryReports={industryReports} loading={loading} />;
+// }
+
+
+
+
 import IndustryPage from "../../../../views/IndustryPage";
+import { notFound } from "next/navigation";
+import { cookies } from "next/headers";
 
-export default function IndustryPageRoute() {
-  const { slug } = useParams();
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
-  const [industryReports, setIndustryReports] = useState(null);
-  const [loading, setLoading] = useState(true);
+async function getIndustryReports(slug) {
+  if (!slug) return null;
 
-  const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+  const cookieStore = await cookies();
+  const token = cookieStore.get("token")?.value;
 
-  useEffect(() => {
-    const getIndustryReportsData = async () => {
-      try {
-        setLoading(true);
+  console.log("token: ",token);
 
-        const token = localStorage.getItem("token");
-
-        const response = await axios.get(
-          `${BASE_URL}/industry/reports?industry=${slug}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          },
-        );
-
-        // console.log("getIndustryReportsData response:", response);
-        if (response?.status === 200) {
-          setIndustryReports(response?.data);
-        }
-      } catch (error) {
-        console.log("Something went wrong:", error);
-      } finally {
-        setLoading(false);
+  try {
+    const response = await fetch(
+      `${BASE_URL}/industry/reports?industry=${encodeURIComponent(slug)}`,
+      {
+        cache: "no-store",
+         headers: {
+          Accept: "application/json",
+          ...(token && {
+            Authorization: `Bearer ${token}`,
+          }),
+        },
       }
+    );
+
+    if (!response.ok) {
+      console.error(
+        `Industry API Error: ${response.status} ${response.statusText}`
+      );
+      return null;
+    }
+
+    const data = await response.json();
+
+    console.log("industry data: ",data);
+
+    if (!data) {
+      return null;
+    }
+
+    return data;
+  } catch (error) {
+    console.error("Failed to fetch industry reports:", error);
+    return null;
+  }
+}
+
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+
+  const industryReports = await getIndustryReports(slug);
+
+  if (!industryReports) {
+    return {
+      title: "Industry Not Found",
+      description: "The requested industry could not be found.",
+      robots: {
+        index: false,
+        follow: false,
+      },
     };
+  }
 
-    if (slug) {
-      getIndustryReportsData();
-    }
-  }, [slug]);
+  const name = industryReports?.name || "Industry Reports";
 
-  useEffect(() => {
-    if (!industryReports?.name) return;
+  const description = industryReports?.description
+    ? `${industryReports.description} Browse ${
+        industryReports.total || 0
+      }+ reports for actionable market intelligence.`
+    : "Browse market research reports by industry.";
 
-    document.title = `${industryReports.name} | Market Research Reports`;
+  return {
+    title: `${name} | Market Research Reports`,
+    description,
 
-    const description = industryReports?.description
-      ? `${industryReports.description} Browse ${
-          industryReports.total || 0
-        }+ reports for actionable market intelligence.`
-      : "Browse market research reports by industry.";
+    alternates: {
+      canonical: `https://integermarket.com/industry/${slug}`,
+    },
 
-    let metaDescription = document.querySelector('meta[name="description"]');
+    openGraph: {
+      title: `${name} | Market Research Reports`,
+      description,
+      url: `https://integermarket.com/industry/${slug}`,
+      type: "website",
+    },
 
-    if (!metaDescription) {
-      metaDescription = document.createElement("meta");
-      metaDescription.name = "description";
-      document.head.appendChild(metaDescription);
-    }
+    twitter: {
+      card: "summary_large_image",
+      title: `${name} | Market Research Reports`,
+      description,
+    },
+  };
+}
 
-    metaDescription.content = description;
+export default async function IndustryPageRoute({ params }) {
+  const { slug } = await params;
 
-    let canonical = document.querySelector('link[rel="canonical"]');
+  const industryReports = await getIndustryReports(slug);
 
-    if (!canonical) {
-      canonical = document.createElement("link");
-      canonical.rel = "canonical";
-      document.head.appendChild(canonical);
-    }
+  if (!industryReports) {
+    notFound();
+  }
 
-    canonical.href = `https://integermarket.com/industry/${slug}`;
-  }, [industryReports, slug]);
-
-  return <IndustryPage industryReports={industryReports} loading={loading} />;
+  return (
+    <IndustryPage
+      industryReports={industryReports}
+      loading={false}
+    />
+  );
 }

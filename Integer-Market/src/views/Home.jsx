@@ -674,7 +674,7 @@ export default function Home() {
           <ScrollReveal className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
             <div>
               <span className="inline-block text-xs font-semibold text-primary uppercase tracking-widest mb-3">
-                16 Industries
+                {industryData?.length || 0} Industries
               </span>
               <h2
                 id="industries-heading"

@@ -17,6 +17,8 @@
 import { Suspense } from "react";
 import Checkout from "../../views/Checkout";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "Checkout",
   description: "Complete your market research report purchase securely.",

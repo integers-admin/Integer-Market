@@ -100,6 +100,10 @@ export function AuthProvider({ children }) {
         // console.log("token: ",token);
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(userData));
+
+        // Cookie for SSR (expires in 2 days)
+  document.cookie = `token=${token}; path=/; max-age=172800`;
+  
         setUser(userData);
         await getCartItems();
         return true;
@@ -160,6 +164,7 @@ export function AuthProvider({ children }) {
       if (expiryTime <= currentTime) {
         localStorage.removeItem("token");
         localStorage.removeItem("user");
+        document.cookie = "token=; Max-Age=0; path=/";
         clearCart();
         setUser(null);
         setIsLoading(false);
@@ -171,6 +176,7 @@ export function AuthProvider({ children }) {
       logoutTimer = setTimeout(() => {
         localStorage.removeItem("token");
         localStorage.removeItem("user");
+        document.cookie = "token=; Max-Age=0; path=/";
         clearCart();
         setUser(null);
         toast.info("Token expired. Please login again.");
@@ -178,6 +184,7 @@ export function AuthProvider({ children }) {
     } catch (error) {
       localStorage.removeItem("token");
       localStorage.removeItem("user");
+      document.cookie = "token=; Max-Age=0; path=/";
       clearCart();
       setIsLoading(false);
       setUser(null);
@@ -264,6 +271,7 @@ export function AuthProvider({ children }) {
         clearCart();
         localStorage.removeItem("token");
         localStorage.removeItem("user");
+        document.cookie = "token=; Max-Age=0; path=/";
         setUser(null);
         toast.success("Logout successful");
       }
@@ -375,6 +383,7 @@ export function AuthProvider({ children }) {
           toast.success(response?.data?.message);
           localStorage.removeItem("token");
           localStorage.removeItem("user");
+          document.cookie = "token=; Max-Age=0; path=/";
           setUser(null);
 
           return {
@@ -437,6 +446,7 @@ export function AuthProvider({ children }) {
           toast.success(response?.data?.message);
           localStorage.removeItem("token");
           localStorage.removeItem("user");
+          document.cookie = "token=; Max-Age=0; path=/";
           setUser(null);
 
           return {

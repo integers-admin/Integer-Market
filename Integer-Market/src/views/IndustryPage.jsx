@@ -273,6 +273,7 @@ import { staggerContainer, fadeInUp } from "../lib/variants";
 
 export default function IndustryPage({ industryReports,loading }) {
   const { slug } = useParams();
+  
   // const industry = getIndustryBySlug(slug);
 
   // console.log("industryReports: ", industryReports);
