@@ -2726,3 +2726,5 @@ export default function Checkout({ reportId }) {
     </div>
   );
 }
+
+// checkout page
