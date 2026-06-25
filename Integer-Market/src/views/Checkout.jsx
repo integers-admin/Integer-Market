@@ -701,7 +701,7 @@
 //     setCouponInput("");
 //   };
 
-//   console.log("buyNowReport????????????????????????????????: ", buyNowReport);
+//   console.log("buyNowReport: ", buyNowReport);
 
 //   const [couponInput, setCouponInput] = useState("");
 
@@ -2726,5 +2726,3 @@ export default function Checkout({ reportId }) {
     </div>
   );
 }
-
-// checkout page

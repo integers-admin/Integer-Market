@@ -101,9 +101,9 @@ export function AuthProvider({ children }) {
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(userData));
 
-        // Cookie for SSR (expires in 2 days)
-  document.cookie = `token=${token}; path=/; max-age=172800`;
-  
+        // Cookie (expires in 2 days)
+        document.cookie = `token=${token}; path=/; max-age=172800`;
+
         setUser(userData);
         await getCartItems();
         return true;
@@ -151,7 +151,6 @@ export function AuthProvider({ children }) {
     }
 
     try {
-
       const decoded = jwtDecode(token);
 
       if (!decoded?.exp) {
@@ -191,7 +190,7 @@ export function AuthProvider({ children }) {
     }
 
     setIsLoading(false);
-    
+
     return () => {
       if (logoutTimer) {
         clearTimeout(logoutTimer);
