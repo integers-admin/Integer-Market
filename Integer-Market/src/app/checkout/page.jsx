@@ -40,6 +40,7 @@
 
 import { Suspense } from "react";
 import Checkout from "../../views/Checkout";
+import { connection } from "next/server";
 
 export const dynamic = "force-dynamic";
 
@@ -53,6 +54,8 @@ export const metadata = {
 };
 
 export default async function CheckoutPage({ searchParams }) {
+
+  await connection()
 
   const params = await searchParams;
 
