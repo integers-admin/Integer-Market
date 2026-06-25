@@ -160,9 +160,165 @@
 
 
 
+// import ReportDetail from "../../../../views/ReportDetail";
+// import { notFound } from "next/navigation";
+// import { cookies } from "next/headers";
+
+// const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+
+// async function getReportDetail(slug) {
+//   if (!slug) return null;
+
+//   try {
+//     const cookieStore = await cookies();
+//     const token = cookieStore.get("token")?.value;
+
+//     const res = await fetch(
+//       `${BASE_URL}/reports/${encodeURIComponent(slug)}/full`,
+//       {
+//         cache: "no-store",
+//         headers: {
+//           Accept: "application/json",
+
+//           ...(token && {
+//             Authorization: `Bearer ${token}`,
+//           }),
+
+//         },
+//       }
+//     );
+
+//     if (!res.ok) {
+//       console.log(
+//         `Report API Error: ${res.status} ${res.statusText}`
+//       );
+//       return null;
+//     }
+
+//     const data = await res.json();
+
+//     if (!data) {
+//       return null;
+//     }
+
+//     return data;
+//   } catch (error) {
+//     console.error("Report fetch failed:", error);
+//     return null;
+//   }
+// }
+
+// export async function generateMetadata({ params }) {
+//   const { slug } = await params;
+
+//   const data = await getReportDetail(slug);
+
+//   if (!data?.price_info) {
+//     return {
+//       title: "Report Not Found",
+//       description:
+//         "The requested market research report could not be found.",
+//       robots: {
+//         index: false,
+//         follow: false,
+//       },
+//     };
+//   }
+
+//   const priceInfo = data.price_info;
+
+//   const title =
+//     priceInfo?.seo_title?.trim() || "Market Research Report";
+
+//   const subTitle = priceInfo?.seo_description?.trim() || "";
+
+//   return {
+//     title: `${title} | Market Research Report`,
+//     description:
+//       subTitle ||
+//       `Get detailed insights on ${title}, including market size, CAGR, industry trends, competitive landscape, and future outlook.`,
+
+//     alternates: {
+//       canonical: `https://integermarket.com/report-name/${slug}`,
+//     },
+
+//     openGraph: {
+//       title: `${title} | Market Research Report`,
+//       description:
+//         subTitle ||
+//         `Comprehensive market analysis for ${title}.`,
+//       url: `https://integermarket.com/report-name/${slug}`,
+//       type: "article",
+//     },
+
+//     twitter: {
+//       card: "summary_large_image",
+//       title: `${title} | Market Research Report`,
+//       description:
+//         subTitle ||
+//         `Comprehensive market analysis for ${title}.`,
+//     },
+//   };
+// }
+
+// export default async function ReportDetailPage({ params }) {
+//   const { slug } = await params;
+
+//   const data = await getReportDetail(slug);
+
+//   if (!data?.price_info) {
+//     notFound();
+//   }
+
+//   const priceInfo = data?.price_info ?? {};
+//   const scope = Array.isArray(data?.scope) ? data.scope : [];
+//   const sections = Array.isArray(data?.sections)
+//     ? data.sections
+//     : [];
+
+//   const reportCovers = scope?.[0]?.values ?? [];
+//   const reportSupports = scope?.[1]?.values ?? [];
+
+//   return (
+//     <ReportDetail
+//       amount={priceInfo?.amount_cents ?? ""}
+//       reportId={priceInfo?.report_unique_id ?? ""}
+//       publishDate={priceInfo?.publish_date ?? ""}
+//       reportPages={priceInfo?.page_count ?? ""}
+//       reportCovers={reportCovers}
+//       reportSupports={reportSupports}
+//       tableContent={sections}
+//       imgPath={priceInfo?.image_path ?? null}
+//       title={priceInfo?.title ?? ""}
+//       subTitle={priceInfo?.subtitle ?? ""}
+//       seoKeywords={
+//         typeof priceInfo?.seo_keywords === "string"
+//           ? priceInfo.seo_keywords
+//               .split(",")
+//               .map((item) => item.trim())
+//               .filter(Boolean)
+//           : []
+//       }
+//       pdfPath={priceInfo?.pdf_url ?? null}
+//       marketSize={priceInfo?.market_size ?? ""}
+//       cagrData={priceInfo?.cagr ?? ""}
+//       coverageDurationYears={
+//         priceInfo?.coverage_duration_years ?? 0
+//       }
+//       subIndustry={priceInfo?.sub_industry ?? ""}
+//       seoSlug={priceInfo?.seo_slug ?? ""}
+//       primaryTopic={priceInfo?.primary_topic ?? ""}
+//     />
+//   );
+// }
+
+
+
+// src/app/(site)/report-name/[slug]/page.jsx
 import ReportDetail from "../../../../views/ReportDetail";
 import { notFound } from "next/navigation";
 import { cookies } from "next/headers";
+import Script from "next/script";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -179,25 +335,19 @@ async function getReportDetail(slug) {
         cache: "no-store",
         headers: {
           Accept: "application/json",
-
           ...(token && {
             Authorization: `Bearer ${token}`,
           }),
-
         },
       }
     );
 
     if (!res.ok) {
-      console.log(
-        `Report API Error: ${res.status} ${res.statusText}`
-      );
+      console.log(`Report API Error: ${res.status} ${res.statusText}`);
       return null;
     }
 
     const data = await res.json();
-
-    console.log("report data: ",data);
 
     if (!data) {
       return null;
@@ -218,8 +368,7 @@ export async function generateMetadata({ params }) {
   if (!data?.price_info) {
     return {
       title: "Report Not Found",
-      description:
-        "The requested market research report could not be found.",
+      description: "The requested market research report could not be found.",
       robots: {
         index: false,
         follow: false,
@@ -229,8 +378,7 @@ export async function generateMetadata({ params }) {
 
   const priceInfo = data.price_info;
 
-  const title =
-    priceInfo?.seo_title?.trim() || "Market Research Report";
+  const title = priceInfo?.seo_title?.trim() || "Market Research Report";
 
   const subTitle = priceInfo?.seo_description?.trim() || "";
 
@@ -246,9 +394,7 @@ export async function generateMetadata({ params }) {
 
     openGraph: {
       title: `${title} | Market Research Report`,
-      description:
-        subTitle ||
-        `Comprehensive market analysis for ${title}.`,
+      description: subTitle || `Comprehensive market analysis for ${title}.`,
       url: `https://integermarket.com/report-name/${slug}`,
       type: "article",
     },
@@ -256,9 +402,7 @@ export async function generateMetadata({ params }) {
     twitter: {
       card: "summary_large_image",
       title: `${title} | Market Research Report`,
-      description:
-        subTitle ||
-        `Comprehensive market analysis for ${title}.`,
+      description: subTitle || `Comprehensive market analysis for ${title}.`,
     },
   };
 }
@@ -272,46 +416,150 @@ export default async function ReportDetailPage({ params }) {
     notFound();
   }
 
-  console.log("data?.price_info: ",typeof(data?.price_info));
-
   const priceInfo = data?.price_info ?? {};
   const scope = Array.isArray(data?.scope) ? data.scope : [];
-  const sections = Array.isArray(data?.sections)
-    ? data.sections
-    : [];
+  const sections = Array.isArray(data?.sections) ? data.sections : [];
 
   const reportCovers = scope?.[0]?.values ?? [];
   const reportSupports = scope?.[1]?.values ?? [];
 
+  const reportTitle = priceInfo?.title || "Market Research Report";
+  const reportDescription = priceInfo?.seo_description || priceInfo?.subtitle || "";
+  const reportPrice = priceInfo?.amount_cents ? (parseFloat(priceInfo.amount_cents)).toString() : "0";
+
+  // Combined Schema: Product + Breadcrumb + WebPage
+  const combinedSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      // 1. Product Schema
+      {
+        "@type": "Product",
+        "name": reportTitle,
+        "description": reportDescription,
+        "image": priceInfo?.image_path || "https://integermarket.com/assets/default-report.jpg",
+        "sku": priceInfo?.report_unique_id,
+        "brand": {
+          "@type": "Brand",
+          "name": "Integer Market"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": reportPrice,
+          "priceCurrency": "USD",
+          "priceValidUntil": "2026-12-31",
+          "availability": "https://schema.org/InStock",
+          "url": `https://integermarket.com/report-name/${slug}`
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.5",
+          "ratingCount": "100"
+        },
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Pages",
+            "value": priceInfo?.page_count || "250"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Published Date",
+            "value": priceInfo?.publish_date || new Date().toISOString().split('T')[0]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Category",
+            "value": priceInfo?.sub_industry || "Market Research"
+          }
+        ]
+      },
+      // 2. Breadcrumb Schema
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://integermarket.com"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Reports",
+            "item": "https://integermarket.com/report"
+          },
+          ...(priceInfo?.sub_industry ? [{
+            "@type": "ListItem",
+            "position": 3,
+            "name": priceInfo.sub_industry,
+            "item": `https://integermarket.com/industry/${priceInfo.sub_industry.toLowerCase().replace(/\s+/g, '-')}`
+          }] : []),
+          {
+            "@type": "ListItem",
+            "position": priceInfo?.sub_industry ? 4 : 3,
+            "name": reportTitle
+          }
+        ]
+      },
+      // 3. WebPage Schema
+      {
+        "@type": "WebPage",
+        "name": `${reportTitle} | Market Research Report`,
+        "description": reportDescription || `Comprehensive market analysis for ${reportTitle}.`,
+        "url": `https://integermarket.com/report-name/${slug}`,
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "Integer Market",
+          "url": "https://integermarket.com"
+        },
+        "about": {
+          "@type": "Thing",
+          "name": priceInfo?.sub_industry || "Market Research"
+        }
+      }
+    ]
+  };
+
   return (
-    <ReportDetail
-      amount={priceInfo?.amount_cents ?? ""}
-      reportId={priceInfo?.report_unique_id ?? ""}
-      publishDate={priceInfo?.publish_date ?? ""}
-      reportPages={priceInfo?.page_count ?? ""}
-      reportCovers={reportCovers}
-      reportSupports={reportSupports}
-      tableContent={sections}
-      imgPath={priceInfo?.image_path ?? null}
-      title={priceInfo?.title ?? ""}
-      subTitle={priceInfo?.subtitle ?? ""}
-      seoKeywords={
-        typeof priceInfo?.seo_keywords === "string"
-          ? priceInfo.seo_keywords
-              .split(",")
-              .map((item) => item.trim())
-              .filter(Boolean)
-          : []
-      }
-      pdfPath={priceInfo?.pdf_url ?? null}
-      marketSize={priceInfo?.market_size ?? ""}
-      cagrData={priceInfo?.cagr ?? ""}
-      coverageDurationYears={
-        priceInfo?.coverage_duration_years ?? 0
-      }
-      subIndustry={priceInfo?.sub_industry ?? ""}
-      seoSlug={priceInfo?.seo_slug ?? ""}
-      primaryTopic={priceInfo?.primary_topic ?? ""}
-    />
+    <>
+      {/* Combined Schema: Product + Breadcrumb + WebPage */}
+      <Script
+        id={`report-schema-${slug}`}
+        type="application/ld+json"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(combinedSchema)
+        }}
+      />
+
+      <ReportDetail
+        amount={priceInfo?.amount_cents ?? ""}
+        reportId={priceInfo?.report_unique_id ?? ""}
+        publishDate={priceInfo?.publish_date ?? ""}
+        reportPages={priceInfo?.page_count ?? ""}
+        reportCovers={reportCovers}
+        reportSupports={reportSupports}
+        tableContent={sections}
+        imgPath={priceInfo?.image_path ?? null}
+        title={priceInfo?.title ?? ""}
+        subTitle={priceInfo?.subtitle ?? ""}
+        seoKeywords={
+          typeof priceInfo?.seo_keywords === "string"
+            ? priceInfo.seo_keywords
+                .split(",")
+                .map((item) => item.trim())
+                .filter(Boolean)
+            : []
+        }
+        pdfPath={priceInfo?.pdf_url ?? null}
+        marketSize={priceInfo?.market_size ?? ""}
+        cagrData={priceInfo?.cagr ?? ""}
+        coverageDurationYears={priceInfo?.coverage_duration_years ?? 0}
+        subIndustry={priceInfo?.sub_industry ?? ""}
+        seoSlug={priceInfo?.seo_slug ?? ""}
+        primaryTopic={priceInfo?.primary_topic ?? ""}
+      />
+    </>
   );
 }

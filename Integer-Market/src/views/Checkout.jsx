@@ -510,8 +510,6 @@
 //     }
 //   }, []);
 
-//   console.log("reportId://////////////////////// ",reportId);
-
 //   const fetchBuyNowSummary = async () => {
 //     try {
 //       const response = await axios.get(

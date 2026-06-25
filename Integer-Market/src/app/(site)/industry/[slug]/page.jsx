@@ -146,9 +146,124 @@
 
 
 
+// import IndustryPage from "../../../../views/IndustryPage";
+// import { notFound } from "next/navigation";
+// import { cookies } from "next/headers";
+
+// const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+
+// async function getIndustryReports(slug) {
+//   if (!slug) return null;
+
+//   const cookieStore = await cookies();
+//   const token = cookieStore.get("token")?.value;
+
+//   try {
+//     const response = await fetch(
+//       `${BASE_URL}/industry/reports?industry=${encodeURIComponent(slug)}`,
+//       {
+//         cache: "no-store",
+//          headers: {
+//           Accept: "application/json",
+//           ...(token && {
+//             Authorization: `Bearer ${token}`,
+//           }),
+//         },
+//       }
+//     );
+
+//     if (!response.ok) {
+//       console.error(
+//         `Industry API Error: ${response.status} ${response.statusText}`
+//       );
+//       return null;
+//     }
+
+//     const data = await response.json();
+
+//     if (!data) {
+//       return null;
+//     }
+
+//     return data;
+//   } catch (error) {
+//     console.error("Failed to fetch industry reports:", error);
+//     return null;
+//   }
+// }
+
+// export async function generateMetadata({ params }) {
+//   const { slug } = await params;
+
+//   const industryReports = await getIndustryReports(slug);
+
+//   if (!industryReports) {
+//     return {
+//       title: "Industry Not Found",
+//       description: "The requested industry could not be found.",
+//       robots: {
+//         index: false,
+//         follow: false,
+//       },
+//     };
+//   }
+
+//   const name = industryReports?.name || "Industry Reports";
+
+//   const description = industryReports?.description
+//     ? `${industryReports.description} Browse ${
+//         industryReports.total || 0
+//       }+ reports for actionable market intelligence.`
+//     : "Browse market research reports by industry.";
+
+//   return {
+//     title: `${name} | Market Research Reports`,
+//     description,
+
+//     alternates: {
+//       canonical: `https://integermarket.com/industry/${slug}`,
+//     },
+
+//     openGraph: {
+//       title: `${name} | Market Research Reports`,
+//       description,
+//       url: `https://integermarket.com/industry/${slug}`,
+//       type: "website",
+//     },
+
+//     twitter: {
+//       card: "summary_large_image",
+//       title: `${name} | Market Research Reports`,
+//       description,
+//     },
+//   };
+// }
+
+// export default async function IndustryPageRoute({ params }) {
+//   const { slug } = await params;
+
+//   const industryReports = await getIndustryReports(slug);
+
+//   if (!industryReports) {
+//     notFound();
+//   }
+
+//   return (
+//     <IndustryPage
+//       industryReports={industryReports}
+//       loading={false}
+//     />
+//   );
+// }
+
+
+
+
+// src/app/(site)/industry/[slug]/page.jsx
 import IndustryPage from "../../../../views/IndustryPage";
 import { notFound } from "next/navigation";
 import { cookies } from "next/headers";
+import Script from "next/script";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -158,14 +273,12 @@ async function getIndustryReports(slug) {
   const cookieStore = await cookies();
   const token = cookieStore.get("token")?.value;
 
-  console.log("token: ",token);
-
   try {
     const response = await fetch(
       `${BASE_URL}/industry/reports?industry=${encodeURIComponent(slug)}`,
       {
         cache: "no-store",
-         headers: {
+        headers: {
           Accept: "application/json",
           ...(token && {
             Authorization: `Bearer ${token}`,
@@ -182,8 +295,6 @@ async function getIndustryReports(slug) {
     }
 
     const data = await response.json();
-
-    console.log("industry data: ",data);
 
     if (!data) {
       return null;
@@ -248,14 +359,76 @@ export default async function IndustryPageRoute({ params }) {
 
   const industryReports = await getIndustryReports(slug);
 
+  console.log("industryReports: ",industryReports);
+
   if (!industryReports) {
     notFound();
   }
 
+  const industryName = industryReports?.name || slug;
+
   return (
-    <IndustryPage
-      industryReports={industryReports}
-      loading={false}
-    />
+    <>
+      {/* Combined Schema: Breadcrumb + CollectionPage + WebPage */}
+      <Script
+        id={`industry-schema-${slug}`}
+        type="application/ld+json"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            "name": `${industryName} Market Research Reports`,
+            "description": industryReports?.description || `Browse market research reports for ${industryName}`,
+            "url": `https://integermarket.com/industry/${slug}`,
+            "isPartOf": {
+              "@type": "WebSite",
+              "name": "Integer Market",
+              "url": "https://integermarket.com"
+            },
+            "about": {
+              "@type": "Thing",
+              "name": industryName
+            },
+            "breadcrumb": {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://integermarket.com"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Industries",
+                  "item": "https://integermarket.com/industries"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": industryName
+                }
+              ]
+            },
+            "mainEntity": {
+              "@type": "ItemList",
+              "itemListElement": (industryReports?.reports || []).map((report, index) => ({
+                "@type": "ListItem",
+                "position": index + 1,
+                "name": report.title || `Report ${index + 1}`,
+                "url": `https://integermarket.com/report-name/${report.seo_slug || report.report_id}`
+              }))
+            }
+          })
+        }}
+      />
+
+      <IndustryPage
+        industryReports={industryReports}
+        loading={false}
+      />
+    </>
   );
 }

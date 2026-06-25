@@ -621,7 +621,6 @@
 //                   </div> */}
 
 //                   {/* Key metrics */}
-//                   {console.log("marketSize: ", marketSize)}
 //                   <div className="grid grid-cols-3 gap-4 mb-6">
 //                     {[
 //                       {

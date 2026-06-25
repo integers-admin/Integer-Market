@@ -96,8 +96,6 @@ export function AuthProvider({ children }) {
         let token = response?.data?.token;
         toast.success(response?.data?.message || "Login successful");
 
-        // console.log("userName: ",userName);
-        // console.log("token: ",token);
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(userData));
 
@@ -373,8 +371,6 @@ export function AuthProvider({ children }) {
           "Content-Type": "application/json",
         },
       });
-
-      // console.log("response: ", response);
 
       if (response.status === 200) {
         // Password/email change ke baad force logout

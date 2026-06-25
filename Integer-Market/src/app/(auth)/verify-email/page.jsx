@@ -31,14 +31,10 @@ function VerifyEmailContent() {
         return;
       }
 
-      // console.log("token: ", token);
-
       try {
         const response = await axios.get(
           `${BASE_URL}/verify-email?token=${token}`,
         );
-
-        // console.log("verify email response: ", response);
 
         if (response?.data?.success === true) {
           setStatus("success");

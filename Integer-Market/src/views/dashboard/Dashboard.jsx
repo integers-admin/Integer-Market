@@ -592,7 +592,6 @@ export default function Dashboard() {
 
   let userDetail = localStorage.getItem("user");
   const parsedData = userDetail ? JSON.parse(userDetail) : null;
-  // console.log("parsedData: ", parsedData);
 
   return (
     <div className="min-h-screen bg-surface">

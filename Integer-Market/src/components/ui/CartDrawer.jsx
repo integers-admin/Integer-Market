@@ -257,7 +257,6 @@
 //                         </div>
 //                         <div className="mt-3 flex items-center justify-between">
 //                           <span className="text-xs text-slate-400">
-//                             {/* {console.log(item.pages)} */}
 //                             {item?.pages} pages · PDF · Instant access
 //                           </span>
 //                           <span className="text-base font-bold text-slate-900">
@@ -670,7 +669,6 @@ export default function CartDrawer() {
                         </div>
                         <div className="mt-3 flex items-center justify-between">
                           <span className="text-xs text-slate-400">
-                            {/* {console.log(item.pages)} */}
                             {item?.pages} pages · PDF · Instant access
                           </span>
                           <span className="text-base font-bold text-slate-900">

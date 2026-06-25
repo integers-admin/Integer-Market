@@ -77,9 +77,6 @@ function ResetPasswordContent() {
 
     const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
-    console.log("token: ", token);
-    console.log("pw: ", pw);
-
     try {
       const response = await axios.post(
         `${BASE_URL}/auth/reset-password`,
