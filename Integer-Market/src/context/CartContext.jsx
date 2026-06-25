@@ -220,7 +220,7 @@ export function CartProvider({ children }) {
 
   const getCartItems = async () => {
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
 
       const response = await axios.get(`${BASE_URL}/cart`, {
         headers: {
@@ -239,7 +239,7 @@ export function CartProvider({ children }) {
 
   const addToCart = async (slug) => {
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
 
       if (isInCart(slug)) {
         setCartOpen(true);
@@ -279,7 +279,7 @@ export function CartProvider({ children }) {
 
   const removeFromCart = async (reportId, seo_slug) => {
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
       const response = await axios.delete(
         `${BASE_URL}/cart/items/${reportId}`,
         {
@@ -333,7 +333,7 @@ export function CartProvider({ children }) {
     }
 
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
 
       const response = await axios.post(
         `${BASE_URL}/cart/apply-coupon`,

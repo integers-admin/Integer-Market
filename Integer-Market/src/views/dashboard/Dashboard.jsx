@@ -514,7 +514,7 @@ export default function Dashboard() {
 
   const getPurchasedReports = async () => {
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
 
       let response = await axios.get(`${BASE_URL}/profile`, {
         headers: {
@@ -574,7 +574,7 @@ export default function Dashboard() {
 
   const handleDownload = async (slug) => {
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
 
       const response = await axios.get(`${BASE_URL}/reports/${slug}/download`, {
         headers: {
@@ -590,7 +590,7 @@ export default function Dashboard() {
     }
   };
 
-  let userDetail = localStorage.getItem("user");
+  let userDetail = localStorage.getItem("&APl1#2CbnABK7xfX49b");
   const parsedData = userDetail ? JSON.parse(userDetail) : null;
 
   return (

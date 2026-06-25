@@ -25,7 +25,7 @@ export default function ReportCard({ report }) {
     const router = useRouter();
 
   const handleAddToCart = (report) => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
 
   if (!token) {
     router.push("/login");
@@ -38,7 +38,7 @@ export default function ReportCard({ report }) {
 
   const handleDownload = async (slug) => {
   try {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
 
     const response = await axios.get(
       `${BASE_URL}/reports/${slug}/download`,

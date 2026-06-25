@@ -573,7 +573,7 @@ async function getReportDetail(slug) {
 
   try {
     const cookieStore = await cookies();
-    const token = cookieStore.get("token")?.value;
+    const token = cookieStore.get("1w8YJdmwOhRZylWbmcHX")?.value;
 
     const res = await fetch(
       `${BASE_URL}/reports/${encodeURIComponent(slug)}/full`,

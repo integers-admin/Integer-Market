@@ -2267,7 +2267,7 @@ export default function Checkout({ reportId }) {
   const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
-    const userData = localStorage.getItem("user");
+    const userData = localStorage.getItem("&APl1#2CbnABK7xfX49b");
 
     if (userData) {
       const user = JSON.parse(userData);
@@ -2366,7 +2366,7 @@ export default function Checkout({ reportId }) {
 
     if (reportId) {
       try {
-        const token = localStorage.getItem("token");
+        const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
 
         const res = await axios.post(
           `${BASE_URL}/cart/apply-coupon`,
@@ -2426,7 +2426,7 @@ export default function Checkout({ reportId }) {
   const handlePay = async () => {
     try {
       setLoading(true);
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
 
       const endpoint = reportId
         ? `${BASE_URL}/checkout/buy-now/create-order`

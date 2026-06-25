@@ -149,7 +149,7 @@ export default function Navbar() {
   }`;
 
   useEffect(() => {
-    const userDetail = localStorage.getItem("user");
+    const userDetail = localStorage.getItem("&APl1#2CbnABK7xfX49b");
     setParsedData(userDetail ? JSON.parse(userDetail) : null);
   }, []);
 

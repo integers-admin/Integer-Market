@@ -1560,7 +1560,7 @@ export default function ReportDetail({
 
   const handleAddToCart = () => {
     if (!seoSlug) return;
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
 
     if (!token) {
       router.push("/login");
@@ -1580,7 +1580,7 @@ export default function ReportDetail({
   const handleBuyNow = (slug) => {
     if (!slug) return;
 
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
     if (!token) {
       router.push("/login");
       return;

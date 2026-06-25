@@ -96,11 +96,11 @@ export function AuthProvider({ children }) {
         let token = response?.data?.token;
         toast.success(response?.data?.message || "Login successful");
 
-        localStorage.setItem("token", token);
-        localStorage.setItem("user", JSON.stringify(userData));
+        localStorage.setItem("1r#efp@G6*6dIBELf^8j", token);
+        localStorage.setItem("&APl1#2CbnABK7xfX49b", JSON.stringify(userData));
 
         // Cookie (expires in 2 days)
-        document.cookie = `token=${token}; path=/; max-age=172800`;
+        document.cookie = `1w8YJdmwOhRZylWbmcHX=${token}; path=/; max-age=172800`;
 
         setUser(userData);
         await getCartItems();
@@ -138,8 +138,8 @@ export function AuthProvider({ children }) {
   // }, []);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    const storedUser = localStorage.getItem("user");
+    const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
+    const storedUser = localStorage.getItem("&APl1#2CbnABK7xfX49b");
 
     let logoutTimer;
 
@@ -159,9 +159,9 @@ export function AuthProvider({ children }) {
       const currentTime = Date.now();
 
       if (expiryTime <= currentTime) {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-        document.cookie = "token=; Max-Age=0; path=/";
+        localStorage.removeItem("1r#efp@G6*6dIBELf^8j");
+        localStorage.removeItem("&APl1#2CbnABK7xfX49b");
+        document.cookie = "1w8YJdmwOhRZylWbmcHX=; Max-Age=0; path=/";
         clearCart();
         setUser(null);
         setIsLoading(false);
@@ -171,17 +171,17 @@ export function AuthProvider({ children }) {
       setUser(JSON.parse(storedUser));
 
       logoutTimer = setTimeout(() => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-        document.cookie = "token=; Max-Age=0; path=/";
+        localStorage.removeItem("1r#efp@G6*6dIBELf^8j");
+        localStorage.removeItem("&APl1#2CbnABK7xfX49b");
+        document.cookie = "1w8YJdmwOhRZylWbmcHX=; Max-Age=0; path=/";
         clearCart();
         setUser(null);
         toast.info("Token expired. Please login again.");
       }, expiryTime - currentTime);
     } catch (error) {
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
-      document.cookie = "token=; Max-Age=0; path=/";
+      localStorage.removeItem("1r#efp@G6*6dIBELf^8j");
+      localStorage.removeItem("&APl1#2CbnABK7xfX49b");
+      document.cookie = "1w8YJdmwOhRZylWbmcHX=; Max-Age=0; path=/";
       clearCart();
       setIsLoading(false);
       setUser(null);
@@ -249,7 +249,7 @@ export function AuthProvider({ children }) {
 
   const logout = async () => {
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
 
       const response = await axios.post(
         `${BASE_URL}/checkout/logout`,
@@ -266,9 +266,9 @@ export function AuthProvider({ children }) {
 
       if (response.status === 200) {
         clearCart();
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-        document.cookie = "token=; Max-Age=0; path=/";
+        localStorage.removeItem("1r#efp@G6*6dIBELf^8j");
+        localStorage.removeItem("&APl1#2CbnABK7xfX49b");
+        document.cookie = "1w8YJdmwOhRZylWbmcHX=; Max-Age=0; path=/";
         setUser(null);
         toast.success("Logout successful");
       }
@@ -363,7 +363,7 @@ export function AuthProvider({ children }) {
     try {
       setIsLoading(true);
 
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
 
       const response = await axios.put(`${BASE_URL}/update-profile`, updates, {
         headers: {
@@ -376,9 +376,9 @@ export function AuthProvider({ children }) {
         // Password/email change ke baad force logout
         if (response?.data?.force_logout === true) {
           toast.success(response?.data?.message);
-          localStorage.removeItem("token");
-          localStorage.removeItem("user");
-          document.cookie = "token=; Max-Age=0; path=/";
+          localStorage.removeItem("1r#efp@G6*6dIBELf^8j");
+          localStorage.removeItem("&APl1#2CbnABK7xfX49b");
+          document.cookie = "1w8YJdmwOhRZylWbmcHX=; Max-Age=0; path=/";
           setUser(null);
 
           return {
@@ -416,7 +416,7 @@ export function AuthProvider({ children }) {
     try {
       setIsLoading(true);
 
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
 
       let payloadData = {
         current_password: updates.currentPassword,
@@ -439,9 +439,9 @@ export function AuthProvider({ children }) {
         // Password/email change ke baad force logout
         if (response?.data?.force_logout === true) {
           toast.success(response?.data?.message);
-          localStorage.removeItem("token");
-          localStorage.removeItem("user");
-          document.cookie = "token=; Max-Age=0; path=/";
+          localStorage.removeItem("1r#efp@G6*6dIBELf^8j");
+          localStorage.removeItem("&APl1#2CbnABK7xfX49b");
+          document.cookie = "1w8YJdmwOhRZylWbmcHX=; Max-Age=0; path=/";
           setUser(null);
 
           return {

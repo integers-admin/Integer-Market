@@ -132,7 +132,7 @@ export default function Signup() {
   };
 
   useEffect(() => {
-    let auth = localStorage.getItem("token");
+    let auth = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
     if (auth) {
       router.push("/");
     }
