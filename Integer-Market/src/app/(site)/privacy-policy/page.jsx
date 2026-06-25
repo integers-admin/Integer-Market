@@ -18,7 +18,7 @@
 
 
 
-// src/app/(site)/privacy-policy/page.jsx
+
 import PrivacyPolicy from '../../../views/legal/PrivacyPolicy'
 import Script from 'next/script'
 
@@ -37,7 +37,6 @@ export const metadata = {
 export default function PrivacyPolicyPage() {
   return (
     <>
-      {/* WebPage + Breadcrumb Schema */}
       <Script
         id="privacy-policy-schema"
         type="application/ld+json"

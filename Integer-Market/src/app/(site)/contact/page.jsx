@@ -20,7 +20,6 @@
 
 
 
-// src/app/(site)/contact/page.jsx
 import Contact from '../../../views/Contact'
 import Script from 'next/script'
 
@@ -40,7 +39,6 @@ export const metadata = {
 export default function ContactPage() {
   return (
     <>
-      {/* ContactPage Schema */}
       <Script
         id="contact-page-schema"
         type="application/ld+json"
@@ -67,7 +65,6 @@ export default function ContactPage() {
         }}
       />
 
-      {/* Breadcrumb Schema */}
       <Script
         id="contact-breadcrumb-schema"
         type="application/ld+json"

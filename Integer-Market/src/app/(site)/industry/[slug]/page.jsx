@@ -259,7 +259,6 @@
 
 
 
-// src/app/(site)/industry/[slug]/page.jsx
 import IndustryPage from "../../../../views/IndustryPage";
 import { notFound } from "next/navigation";
 import { cookies } from "next/headers";
@@ -369,7 +368,6 @@ export default async function IndustryPageRoute({ params }) {
 
   return (
     <>
-      {/* Combined Schema: Breadcrumb + CollectionPage + WebPage */}
       <Script
         id={`industry-schema-${slug}`}
         type="application/ld+json"

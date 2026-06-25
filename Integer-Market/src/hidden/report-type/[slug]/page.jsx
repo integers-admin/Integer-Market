@@ -36,12 +36,11 @@
 
 
 
-// src/app/(site)/report-type/[slug]/page.jsx
-import ReportTypePage from '../../../../views/ReportTypePage'
-import { reportTypes } from '../../../../data/reportTypes'
+import ReportTypePage from '../../../views/ReportTypePage'
+import { reportTypes } from '../../../data/reportTypes'
 import Script from 'next/script'
 
-export const revalidate = 3600  // ISR: revalidate every hour
+export const revalidate = 3600;
 
 export async function generateMetadata({ params }) {
   const { slug } = await params
@@ -79,7 +78,6 @@ export default async function ReportTypePageRoute({ params }) {
     return <ReportTypePage />
   }
 
-  // Combined Schema: CollectionPage + Breadcrumb + WebPage
   const combinedSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
@@ -130,7 +128,6 @@ export default async function ReportTypePageRoute({ params }) {
 
   return (
     <>
-      {/* Combined Schema: CollectionPage + Breadcrumb + WebPage */}
       <Script
         id={`report-type-schema-${slug}`}
         type="application/ld+json"

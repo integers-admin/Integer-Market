@@ -22,7 +22,6 @@
 
 
 
-// src/app/(site)/research-methodology/page.jsx
 import ResearchMethodology from '../../../views/ResearchMethodology'
 import Script from 'next/script'
 
@@ -42,7 +41,6 @@ export const metadata = {
 export default function ResearchMethodologyPage() {
   return (
     <>
-      {/* WebPage + Breadcrumb Schema */}
       <Script
         id="methodology-schema"
         type="application/ld+json"

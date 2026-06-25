@@ -17,7 +17,7 @@
 // }
 
 
-// src/app/(site)/disclaimer/page.jsx
+
 import Disclaimer from '../../../views/legal/Disclaimer'
 import Script from 'next/script'
 
@@ -36,7 +36,6 @@ export const metadata = {
 export default function DisclaimerPage() {
   return (
     <>
-      {/* WebPage + Breadcrumb Schema */}
       <Script
         id="disclaimer-schema"
         type="application/ld+json"

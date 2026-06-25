@@ -25,7 +25,7 @@
 
 
 
-// src/app/(site)/report/page.jsx
+
 import { Suspense } from 'react'
 import Reports from '../../../views/Reports'
 import Script from 'next/script'
@@ -46,7 +46,6 @@ export const metadata = {
 export default function ReportsPage() {
   return (
     <>
-      {/* WebPage + Breadcrumb Schema */}
       <Script
         id="reports-page-schema"
         type="application/ld+json"

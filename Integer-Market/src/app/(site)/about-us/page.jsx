@@ -20,7 +20,6 @@
 
 
 
-// src/app/(site)/about-us/page.jsx
 import AboutUs from '../../../views/AboutUs'
 import Script from 'next/script'
 
@@ -40,7 +39,6 @@ export const metadata = {
 export default function AboutUsPage() {
   return (
     <>
-      {/* AboutPage + Breadcrumb Schema */}
       <Script
         id="about-us-schema"
         type="application/ld+json"

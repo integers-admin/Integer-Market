@@ -314,7 +314,7 @@
 
 
 
-// src/app/(site)/report-name/[slug]/page.jsx
+
 import ReportDetail from "../../../../views/ReportDetail";
 import { notFound } from "next/navigation";
 import { cookies } from "next/headers";
@@ -427,11 +427,9 @@ export default async function ReportDetailPage({ params }) {
   const reportDescription = priceInfo?.seo_description || priceInfo?.subtitle || "";
   const reportPrice = priceInfo?.amount_cents ? (parseFloat(priceInfo.amount_cents)).toString() : "0";
 
-  // Combined Schema: Product + Breadcrumb + WebPage
   const combinedSchema = {
     "@context": "https://schema.org",
     "@graph": [
-      // 1. Product Schema
       {
         "@type": "Product",
         "name": reportTitle,
@@ -473,7 +471,6 @@ export default async function ReportDetailPage({ params }) {
           }
         ]
       },
-      // 2. Breadcrumb Schema
       {
         "@type": "BreadcrumbList",
         "itemListElement": [
@@ -502,7 +499,6 @@ export default async function ReportDetailPage({ params }) {
           }
         ]
       },
-      // 3. WebPage Schema
       {
         "@type": "WebPage",
         "name": `${reportTitle} | Market Research Report`,
@@ -523,7 +519,6 @@ export default async function ReportDetailPage({ params }) {
 
   return (
     <>
-      {/* Combined Schema: Product + Breadcrumb + WebPage */}
       <Script
         id={`report-schema-${slug}`}
         type="application/ld+json"

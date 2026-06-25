@@ -19,7 +19,6 @@
 
 
 
-// src/app/(site)/term-conditions/page.jsx
 import TermsConditions from '../../../views/legal/TermsConditions'
 import Script from 'next/script'
 
@@ -38,7 +37,6 @@ export const metadata = {
 export default function TermsConditionsPage() {
   return (
     <>
-      {/* WebPage + Breadcrumb Schema */}
       <Script
         id="terms-schema"
         type="application/ld+json"

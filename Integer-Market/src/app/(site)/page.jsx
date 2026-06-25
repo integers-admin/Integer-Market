@@ -15,7 +15,6 @@
 
 
 
-// src/app/(site)/page.jsx
 import Home from '../../views/Home'
 import Script from 'next/script'
 
@@ -30,7 +29,6 @@ export const metadata = {
 export default function HomePage() {
   return (
     <>
-      {/* WebPage Schema */}
       <Script
         id="homepage-schema"
         type="application/ld+json"

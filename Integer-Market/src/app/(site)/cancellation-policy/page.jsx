@@ -19,7 +19,6 @@
 
 
 
-// src/app/(site)/cancellation-policy/page.jsx
 import CancellationPolicy from '../../../views/legal/CancellationPolicy'
 import Script from 'next/script'
 
@@ -38,7 +37,6 @@ export const metadata = {
 export default function CancellationPolicyPage() {
   return (
     <>
-      {/* WebPage + Breadcrumb Schema */}
       <Script
         id="cancellation-schema"
         type="application/ld+json"
