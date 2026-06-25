@@ -369,7 +369,7 @@ export const metadata = {
   metadataBase: new URL("https://integermarket.com"),
   title: {
     default: "Integer Market | Global Market Research Reports",
-    template: "%s | Integer Market",
+    // template: "%s | Integer Market",
   },
   description:
     "Actionable market intelligence across pharma, nutraceuticals, chemicals, herbal extracts and 12 more industries. 1,200+ research reports trusted by 5,000+ global decision-makers.",

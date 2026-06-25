@@ -629,7 +629,7 @@ export async function generateMetadata({ params }) {
   const subTitle = priceInfo?.seo_description?.trim() || "";
 
   return {
-    title: `${title} | Market Research Report`,
+    title: `${title}`,
     description:
       subTitle ||
       `Get detailed insights on ${title}, including market size, CAGR, industry trends, competitive landscape, and future outlook.`,
@@ -639,7 +639,7 @@ export async function generateMetadata({ params }) {
     },
 
     openGraph: {
-      title: `${title} | Market Research Report`,
+      title: `${title}`,
       description: subTitle || `Comprehensive market analysis for ${title}.`,
       url: `https://integermarket.com/report-name/${slug}`,
       type: "article",
@@ -647,7 +647,7 @@ export async function generateMetadata({ params }) {
 
     twitter: {
       card: "summary_large_image",
-      title: `${title} | Market Research Report`,
+      title: `${title}`,
       description: subTitle || `Comprehensive market analysis for ${title}.`,
     },
   };

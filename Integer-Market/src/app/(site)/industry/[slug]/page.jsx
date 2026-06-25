@@ -506,7 +506,7 @@ export async function generateMetadata({ params }) {
     : "Browse market research reports by industry.";
 
   return {
-    title: `${name} | Market Research Reports`,
+    title: `${name}`,
     description,
 
     alternates: {
@@ -514,7 +514,7 @@ export async function generateMetadata({ params }) {
     },
 
     openGraph: {
-      title: `${name} | Market Research Reports`,
+      title: `${name}`,
       description,
       url: `https://integermarket.com/industry/${slug}`,
       type: "website",
@@ -522,7 +522,7 @@ export async function generateMetadata({ params }) {
 
     twitter: {
       card: "summary_large_image",
-      title: `${name} | Market Research Reports`,
+      title: `${name}`,
       description,
     },
   };
@@ -532,8 +532,6 @@ export default async function IndustryPageRoute({ params }) {
   const { slug } = await params;
 
   const industryReports = await getIndustryReports(slug);
-
-  console.log("industryReports: ", industryReports);
 
   if (!industryReports) {
     notFound();
@@ -545,7 +543,7 @@ export default async function IndustryPageRoute({ params }) {
   const collectionPageSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": `${industryName} Market Research Reports`,
+    "name": `${industryName}`,
     "description": industryReports?.description || `Browse market research reports for ${industryName}`,
     "url": `${baseUrl}/industry/${slug}`,
     "isPartOf": {
