@@ -64,22 +64,30 @@
 //   );
 // }
 
-"use client";
-
-import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
+import { connection } from "next/server";
 import Checkout from "../../views/Checkout";
 
-function CheckoutWrapper() {
-  const searchParams = useSearchParams();
-  const reportId = searchParams.get("reportId");
-  return <Checkout reportId={reportId} />;
-}
+export const dynamic = "force-dynamic";
 
-export default function CheckoutPage() {
+export const metadata = {
+  title: "Checkout",
+  description: "Complete your market research report purchase securely.",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
+
+export default async function CheckoutPage({ searchParams }) {
+  await connection(); // ✅ Force dynamic rendering
+  
+  const params = await searchParams;
+  const reportId = params?.reportId || null;
+
   return (
     <Suspense fallback={<div>Loading checkout...</div>}>
-      <CheckoutWrapper />
+      <Checkout reportId={reportId} />
     </Suspense>
   );
 }
