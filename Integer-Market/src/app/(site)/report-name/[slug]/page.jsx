@@ -31,7 +31,6 @@
 //   return <ReportDetail />
 // }
 
-
 //  "use client";
 
 //  import { useParams } from "next/navigation";
@@ -155,10 +154,6 @@
 //      />
 //    );
 //  }
-
-
-
-
 
 // import ReportDetail from "../../../../views/ReportDetail";
 // import { notFound } from "next/navigation";
@@ -311,9 +306,6 @@
 //     />
 //   );
 // }
-
-
-
 
 // import ReportDetail from "../../../../views/ReportDetail";
 // import { notFound } from "next/navigation";
@@ -559,7 +551,6 @@
 //   );
 // }
 
-
 // src/app/(site)/report-name/[slug]/page.jsx
 import ReportDetail from "../../../../views/ReportDetail";
 import { notFound } from "next/navigation";
@@ -585,7 +576,7 @@ async function getReportDetail(slug) {
             Authorization: `Bearer ${token}`,
           }),
         },
-      }
+      },
     );
 
     if (!res.ok) {
@@ -670,61 +661,65 @@ export default async function ReportDetailPage({ params }) {
   const reportSupports = scope?.[1]?.values ?? [];
 
   const reportTitle = priceInfo?.title || "Market Research Report";
-  const reportDescription = priceInfo?.seo_description || priceInfo?.subtitle || "";
-  const reportPrice = priceInfo?.amount_cents ? (parseFloat(priceInfo.amount_cents) / 100).toString() : "0";
+  const reportDescription =
+    priceInfo?.seo_description || priceInfo?.subtitle || "";
+  const reportPrice = priceInfo?.amount_cents
+    ? priceInfo.amount_cents.toString()
+    : "0";
   const baseUrl = "https://integermarket.com";
 
   const productSchema = {
     "@type": "Product",
-    "name": reportTitle,
-    "description": reportDescription,
-    "image": priceInfo?.image_path || `${baseUrl}/assets/default-report.jpg`,
-    "sku": priceInfo?.report_unique_id || `IMR-${slug.toUpperCase()}`,
-    "brand": {
+    name: reportTitle,
+    description: reportDescription,
+    image: priceInfo?.image_path || `${baseUrl}/assets/default-report.jpg`,
+    sku: priceInfo?.report_unique_id || `IMR-${slug.toUpperCase()}`,
+    brand: {
       "@type": "Brand",
-      "name": "Integer Market",
+      name: "Integer Market",
     },
-    "offers": {
+    offers: {
       "@type": "Offer",
-      "price": reportPrice,
-      "priceCurrency": "USD",
-      "priceValidUntil": "2026-12-31",
-      "availability": "https://schema.org/InStock",
-      "url": `${baseUrl}/report-name/${slug}`,
+      price: reportPrice,
+      priceCurrency: "USD",
+      priceValidUntil: "2026-12-31",
+      availability: "https://schema.org/InStock",
+      url: `${baseUrl}/report-name/${slug}`,
     },
-    "aggregateRating": {
+    aggregateRating: {
       "@type": "AggregateRating",
-      "ratingValue": "4.5",
-      "ratingCount": "100",
+      ratingValue: "4.5",
+      ratingCount: "100",
     },
-    "additionalProperty": [
+    additionalProperty: [
       {
         "@type": "PropertyValue",
-        "name": "Pages",
-        "value": priceInfo?.page_count || "250",
+        name: "Pages",
+        value: priceInfo?.page_count || "250",
       },
       {
         "@type": "PropertyValue",
-        "name": "Published Date",
-        "value": priceInfo?.publish_date || new Date().toISOString().split('T')[0],
+        name: "Published Date",
+        value:
+          priceInfo?.publish_date || new Date().toISOString().split("T")[0],
       },
       {
         "@type": "PropertyValue",
-        "name": "Category",
-        "value": priceInfo?.sub_industry || "Market Research",
+        name: "Category",
+        value: priceInfo?.sub_industry || "Market Research",
       },
       {
         "@type": "PropertyValue",
-        "name": "Market Size",
-        "value": priceInfo?.market_size || "N/A",
+        name: "Market Size",
+        value: priceInfo?.market_size || "N/A",
       },
       {
         "@type": "PropertyValue",
-        "name": "CAGR",
-        "value": priceInfo?.cagr || "N/A",
+        name: "CAGR",
+        value: priceInfo?.cagr || "N/A",
       },
     ],
-    "mainEntityOfPage": {
+    mainEntityOfPage: {
       "@type": "WebPage",
       "@id": `${baseUrl}/report-name/${slug}`,
     },
@@ -733,73 +728,74 @@ export default async function ReportDetailPage({ params }) {
   const breadcrumbItems = [
     {
       "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": baseUrl,
+      position: 1,
+      name: "Home",
+      item: baseUrl,
     },
     {
       "@type": "ListItem",
-      "position": 2,
-      "name": "Reports",
-      "item": `${baseUrl}/report`,
+      position: 2,
+      name: "Reports",
+      item: `${baseUrl}/report`,
     },
   ];
 
   if (priceInfo?.sub_industry) {
     breadcrumbItems.push({
       "@type": "ListItem",
-      "position": 3,
-      "name": priceInfo.sub_industry,
-      "item": `${baseUrl}/industry/${priceInfo.sub_industry.toLowerCase().replace(/\s+/g, "-")}`,
+      position: 3,
+      name: priceInfo.sub_industry,
+      item: `${baseUrl}/industry/${priceInfo.sub_industry.toLowerCase().replace(/\s+/g, "-")}`,
     });
   }
 
   breadcrumbItems.push({
     "@type": "ListItem",
-    "position": breadcrumbItems.length + 1,
-    "name": reportTitle,
+    position: breadcrumbItems.length + 1,
+    name: reportTitle,
   });
 
   const breadcrumbSchema = {
     "@type": "BreadcrumbList",
-    "itemListElement": breadcrumbItems,
+    itemListElement: breadcrumbItems,
   };
 
   const webpageSchema = {
     "@type": "WebPage",
-    "name": `${reportTitle} | Market Research Report`,
-    "description": reportDescription || `Comprehensive market analysis for ${reportTitle}.`,
-    "url": `${baseUrl}/report-name/${slug}`,
-    "isPartOf": {
+    name: `${reportTitle} | Market Research Report`,
+    description:
+      reportDescription || `Comprehensive market analysis for ${reportTitle}.`,
+    url: `${baseUrl}/report-name/${slug}`,
+    isPartOf: {
       "@type": "WebSite",
-      "name": "Integer Market",
-      "url": baseUrl,
+      name: "Integer Market",
+      url: baseUrl,
     },
-    "about": {
+    about: {
       "@type": "Thing",
-      "name": priceInfo?.sub_industry || "Market Research",
+      name: priceInfo?.sub_industry || "Market Research",
     },
-    "inLanguage": "en-US",
-    "dateModified": new Date().toISOString().split('T')[0],
-    "breadcrumb": breadcrumbSchema,
+    inLanguage: "en-US",
+    dateModified: new Date().toISOString().split("T")[0],
+    breadcrumb: breadcrumbSchema,
   };
 
   const organizationSchema = {
     "@type": "Organization",
-    "name": "Integer Market",
-    "legalName": "Integers Insights Private Limited",
-    "url": baseUrl,
-    "logo": `${baseUrl}/assets/logo.png`,
-    "email": "info@integermarket.com",
-    "telephone": "+91 8976993084",
-    "address": {
+    name: "Integer Market",
+    legalName: "Integers Insights Private Limited",
+    url: baseUrl,
+    logo: `${baseUrl}/assets/logo.png`,
+    email: "info@integermarket.com",
+    telephone: "+91 8976993084",
+    address: {
       "@type": "PostalAddress",
-      "addressCountry": "IN",
-      "addressLocality": "Mumbai",
-      "addressRegion": "Maharashtra",
-      "postalCode": "400102",
+      addressCountry: "IN",
+      addressLocality: "Mumbai",
+      addressRegion: "Maharashtra",
+      postalCode: "400102",
     },
-    "sameAs": [
+    sameAs: [
       "https://www.linkedin.com/company/integersinsights",
       "https://x.com/integers71866",
       "https://www.facebook.com/IntegerMarket",
@@ -809,7 +805,12 @@ export default async function ReportDetailPage({ params }) {
 
   const combinedSchema = {
     "@context": "https://schema.org",
-    "@graph": [productSchema, breadcrumbSchema, webpageSchema, organizationSchema],
+    "@graph": [
+      productSchema,
+      breadcrumbSchema,
+      webpageSchema,
+      organizationSchema,
+    ],
   };
 
   return (
@@ -822,7 +823,7 @@ export default async function ReportDetailPage({ params }) {
           __html: JSON.stringify(combinedSchema),
         }}
       />
-      
+
       <Script
         id={`report-breadcrumb-schema-${slug}`}
         type="application/ld+json"
