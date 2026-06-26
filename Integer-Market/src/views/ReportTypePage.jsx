@@ -40,6 +40,7 @@ export default function ReportTypePage() {
             alt=""
             aria-hidden="true"
             className="absolute inset-0 w-full h-full object-cover opacity-25"
+            loading="lazy"
           />
         )}
         {/* Subtle light fade on the left so text stays readable */}

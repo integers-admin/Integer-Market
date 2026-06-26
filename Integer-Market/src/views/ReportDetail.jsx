@@ -1635,7 +1635,7 @@ export default function ReportDetail({
             >
               <div className="w-full h-full flex flex-col items-center justify-center gap-2">
                 {imgPath && (
-                  <img src={imgPath} alt="image" className="h-full w-full" />
+                  <img src={imgPath} alt="image" className="h-full w-full" loading="lazy" />
                 )}
                 {/* <div
                   className="size-14 rounded-xl flex items-center justify-center"

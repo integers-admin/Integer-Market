@@ -348,6 +348,7 @@ export default function IndustryPage({ industryReports,loading }) {
             alt=""
             aria-hidden="true"
             className="absolute inset-0 w-full h-full object-cover opacity-25"
+            loading="lazy"
           />
         )}
         <div

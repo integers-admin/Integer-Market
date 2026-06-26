@@ -16,4 +16,6 @@ export const industryImages = {
   'nutraceuticals':       '/assets/industries/nutra.png',
   'pharmaceuticals':      '/assets/industries/pharma.png',
   'vitamins-minerals':    '/assets/industries/vitamins.png',
+  'energy-sustainability': '/assets/industries/energy-sustainability.png',
+  'industrial-technology': '/assets/industries/industrial-technology.png',
 }
