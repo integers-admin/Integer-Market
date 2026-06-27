@@ -135,7 +135,7 @@
 //   useEffect(() => {
 //     getCheckBoxData();
 //   }, []);
-  
+
 //   // console.log("query: ",query);
 
 //   // useEffect(() => {
@@ -739,7 +739,7 @@
 //                                   {/* Primary CTA - Add to Cart */}
 //                                   {/* <motion.button
 //                                     whileTap={{ scale: 0.96 }}
-//                                     className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer shadow-sm 
+//                                     className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer shadow-sm
 //                   `}
 //                                   > */}
 //                                   {/* {inCart
@@ -781,11 +781,6 @@
 //   );
 // }
 
-
-
-
-
-
 "use client";
 import { useState, useMemo, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -826,7 +821,8 @@ export default function Reports() {
   const [query, setQuery] = useState("");
   const [mobileFilters, setMobileFilters] = useState(false);
   const [viewMode, setViewMode] = useState("grid");
-  const [isLoading, setIsLoading] = useState(false);
+  const [isFilterLoading, setIsFilterLoading] = useState(true);
+  const [isListLoading, setIsListLoading] = useState(true);
 
   const { addToCart, isInCart } = useCart();
 
@@ -862,7 +858,7 @@ export default function Reports() {
 
   const getListData = async () => {
     try {
-      setIsLoading(true);
+      setIsListLoading(true);
 
       // const response = await axios.post(`${BASE_URL}/reports/filter/display`, {
       //   ...selectedFilters,
@@ -899,13 +895,13 @@ export default function Reports() {
     } catch (err) {
       console.log("something went wrong...", err);
     } finally {
-      setIsLoading(false);
+      setIsListLoading(false);
     }
   };
 
   const getCheckBoxData = async () => {
     try {
-      setIsLoading(true);
+      setIsFilterLoading(true);
       let response = await axios.get(`${BASE_URL}/filters`);
 
       if (response?.status === 200) {
@@ -915,14 +911,14 @@ export default function Reports() {
     } catch (err) {
       console.log("something went wrong...", err);
     } finally {
-      setIsLoading(false);
+      setIsFilterLoading(false);
     }
   };
 
   useEffect(() => {
     getCheckBoxData();
   }, []);
-  
+
   // console.log("query: ",query);
 
   // useEffect(() => {
@@ -930,12 +926,12 @@ export default function Reports() {
   // }, [selectedFilters, sort]);
 
   useEffect(() => {
-  const timer = setTimeout(() => {
-    getListData();
-  }, 500);
+    const timer = setTimeout(() => {
+      getListData();
+    }, 500);
 
-  return () => clearTimeout(timer);
-}, [query, selectedFilters, sort]);
+    return () => clearTimeout(timer);
+  }, [query, selectedFilters, sort]);
 
   // useEffect(() => {
   //   const t = setTimeout(() => setIsLoading(false), 800)
@@ -1123,13 +1119,14 @@ export default function Reports() {
   return (
     <div className="min-h-screen bg-surface">
       {/* Page header */}
-      <div className="bg-white border-b border-slate-100 pt-24 pb-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* <div className="bg-white border-b border-slate-100 pt-24 pb-12"> */}
+      <div className="bg-white border-b border-slate-100 pt-24 pb-5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
           <ScrollReveal>
             <Breadcrumb items={[{ label: "Reports" }]} className="mb-4" />
-            <Badge variant="white" className="mb-4">
+            {/* <Badge variant="black" className="mb-4">
               1,000+ Reports
-            </Badge>
+            </Badge> */}
             <h1 className="text-4xl font-bold text-slate-900 mb-4">
               Market Research Reports
             </h1>
@@ -1141,9 +1138,9 @@ export default function Reports() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
         {/* Search + sort bar */}
-        <div className="flex flex-col sm:flex-row gap-4 mb-8">
+        <div className="flex flex-col sm:flex-row gap-4 mb-4.5">
           <div className="relative flex-1">
             <label htmlFor="reports-search" className="sr-only">
               Search reports
@@ -1205,7 +1202,7 @@ export default function Reports() {
         <div className="flex gap-8">
           {/* Desktop sidebar */}
           <div className="hidden lg:block w-56 flex-shrink-0">
-            {isLoading ? (
+            {isFilterLoading ? (
               <div className="sticky top-24">
                 <FilterSkeleton />
               </div>
@@ -1295,7 +1292,6 @@ export default function Reports() {
                 })}
               </div>
             )} */}
-
             <div className="flex flex-wrap gap-3">
               {Object.entries(selectedFilters).map(([group, items]) =>
                 items.map((item) => (
@@ -1320,7 +1316,6 @@ export default function Reports() {
                 )),
               )}
             </div>
-
             <div className="flex items-center justify-between mb-4">
               <p className="text-sm text-slate-500">
                 <span className="font-semibold text-slate-700">
@@ -1353,7 +1348,19 @@ export default function Reports() {
               </div>
             </div>
 
-            {listData.length === 0 ? (
+            {isListLoading ? (
+              <div
+                className={
+                  viewMode === "grid"
+                    ? "grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"
+                    : "flex flex-col gap-3"
+                }
+              >
+                {Array.from({ length: 6 }).map((_, i) => (
+                  <ReportCardSkeleton key={i} />
+                ))}
+              </div>
+            ) : listData.length === 0 ? (
               <div className="text-center py-20">
                 <p className="text-slate-400 text-lg font-medium mb-2">
                   No reports found
@@ -1368,18 +1375,6 @@ export default function Reports() {
                   Clear all filters
                 </button>
               </div>
-            ) : isLoading ? (
-              <div
-                className={
-                  viewMode === "grid"
-                    ? "grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"
-                    : "flex flex-col gap-3"
-                }
-              >
-                {Array.from({ length: 6 }).map((_, i) => (
-                  <ReportCardSkeleton key={i} />
-                ))}
-              </div>
             ) : (
               <motion.div
                 initial="hidden"
@@ -1391,7 +1386,7 @@ export default function Reports() {
                     : "flex flex-col gap-3"
                 }
               >
-                {listData.map((report) => {
+                {listData?.map((report) => {
                   return (
                     <motion.div key={report.report_id} variants={fadeInUp}>
                       <motion.article

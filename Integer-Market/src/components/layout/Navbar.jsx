@@ -263,7 +263,7 @@ export default function Navbar() {
                     </div>
                     <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between">
                       <p className="text-xs text-slate-400">
-                        1,000+ reports across all industries
+                        100+ reports across all industries
                       </p>
                       <Link
                         href="/report"

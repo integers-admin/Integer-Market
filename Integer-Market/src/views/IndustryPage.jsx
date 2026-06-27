@@ -271,7 +271,7 @@ import { industryBanners } from "../data/industryBanners";
 import { industryImages } from "../data/industryImages";
 import { staggerContainer, fadeInUp } from "../lib/variants";
 
-export default function IndustryPage({ industryReports,loading }) {
+export default function IndustryPage({ industryReports }) {
   const { slug } = useParams();
   
   // const industry = getIndustryBySlug(slug);
@@ -307,18 +307,18 @@ export default function IndustryPage({ industryReports,loading }) {
   // const related = industries.filter((i) => i.slug !== slug).slice(0, 6);
   const bannerImg = industryBanners[slug];
 
-  if (loading) {
-  return (
-    <div className="min-h-screen bg-surface flex items-center justify-center">
-      <div className="text-center">
-        <div className="w-11 h-11 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-        <p className="text-slate-600 font-medium">
-          Loading reports...
-        </p>
-      </div>
-    </div>
-  );
-}
+//   if (loading) {
+//   return (
+//     <div className="min-h-screen bg-surface flex items-center justify-center">
+//       <div className="text-center">
+//         <div className="w-11 h-11 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+//         <p className="text-slate-600 font-medium">
+//           Loading reports...
+//         </p>
+//       </div>
+//     </div>
+//   );
+// }
 
   if (!industryReports) {
     return (
@@ -340,7 +340,7 @@ export default function IndustryPage({ industryReports,loading }) {
       {/* ── Banner header ───────────────────────────────── */}
       <div
         className="relative overflow-hidden bg-slate-50"
-        style={{ minHeight: "280px", paddingTop: "72px" }}
+        style={{ minHeight: "250px", paddingTop: "72px" }}
       >
         {bannerImg && (
           <img
@@ -356,15 +356,15 @@ export default function IndustryPage({ industryReports,loading }) {
           aria-hidden="true"
         />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-5">
           <Breadcrumb
             items={[
               { label: "Reports", href: "/report" },
               { label: industryReports?.name },
             ]}
-            className="mb-6"
+            className="mb-3"
           />
-          <div className="flex flex-wrap items-center gap-3 mb-3">
+          {/* <div className="flex flex-wrap items-center gap-3 mb-3"> */}
             {/* {totalReports > 0 && (
               <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold text-primary border border-primary/20 bg-primary/8">
                 {totalReports} Report{totalReports !== 1 ? "s" : ""}
@@ -375,8 +375,8 @@ export default function IndustryPage({ industryReports,loading }) {
                 {categoryEntry.subcategories.length} Sub-industries
               </span>
             )} */}
-          </div>
-          <h1 className="text-4xl lg:text-5xl font-extrabold text-slate-900 mb-3 leading-tight">
+          {/* </div> */}
+          <h1 className="text-4xl lg:text-5xl font-extrabold text-slate-900 mb-2 leading-tight">
             {industryReports?.name}
           </h1>
           <p className="text-slate-500 text-base max-w-2xl leading-relaxed">
@@ -385,10 +385,10 @@ export default function IndustryPage({ industryReports,loading }) {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
         <>
           <ScrollReveal>
-            <h2 className="text-2xl font-bold text-slate-900 mb-6">
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">
               Available Reports
             </h2>
           </ScrollReveal>
@@ -396,7 +396,7 @@ export default function IndustryPage({ industryReports,loading }) {
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-16"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
           >
             {industryReports?.reports?.map((r,i) => (
               <motion.div key={i} variants={fadeInUp}>

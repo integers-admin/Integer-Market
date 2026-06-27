@@ -706,7 +706,7 @@ export default async function IndustryPageRoute({ params }) {
         }}
       />
 
-      <IndustryPage industryReports={industryReports} loading={false} />
+      <IndustryPage industryReports={industryReports} />
     </>
   );
 }
