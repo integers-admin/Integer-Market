@@ -7,7 +7,7 @@ export const industryImages = {
   'consumer-goods':       '/assets/industries/Consumer goods.png',
   'food-drink':           '/assets/industries/Food drink.png',
   'functional-ingredients': '/assets/industries/Fucntional ingre.png',
-  'future-updates':       '/assets/industries/Future updates.png',
+  'emerging-sectors':       '/assets/industries/Emerging Sectors.png',
   'health-wellness':      '/assets/industries/Health wellnes.png',
   'herbal-extracts':      '/assets/industries/Herbal extr.png',
   'household':            '/assets/industries/household.png',

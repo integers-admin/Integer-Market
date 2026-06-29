@@ -15,7 +15,7 @@ const links = {
     { label: 'Consumer Goods', to: '/industry/consumer-goods' },
     { label: 'Health & Wellness', to: '/industry/health-wellness' },
     { label: 'Ingredients & Materials', to: '/industry/ingredients-materials' },
-    { label: 'Future Updates', to: '/industry/future-updates' },
+    { label: 'Emerging Sectors', to: '/industry/emerging-sectors' },
     { label: 'View All', to: '/report' },
   ],
   Company: [

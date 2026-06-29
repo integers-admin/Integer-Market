@@ -213,9 +213,10 @@ export default function Navbar() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 8, scale: 0.97 }}
                     transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
-                    className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[640px] rounded-2xl bg-white border border-slate-100 shadow-lg p-5"
+                    // className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[640px] rounded-2xl bg-white border border-slate-100 shadow-lg p-5"
                     role="menu"
                     aria-label="Industries menu"
+                    className="absolute top-full left-1/2 -translate-x-[20%] mt-2 w-[640px] rounded-2xl bg-white border border-slate-100 shadow-lg p-5"
                   >
                     <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4 px-1">
                       Browse by Industry

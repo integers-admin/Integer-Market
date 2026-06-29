@@ -7,7 +7,7 @@ export const industryBanners = {
   'consumer-goods':         '/assets/banners/industries/consumer goods.png',
   'food-drink':             '/assets/banners/industries/food drink.png',
   'functional-ingredients': '/assets/banners/industries/functional ing.png',
-  'future-updates':         '/assets/banners/industries/future update.png',
+  'emerging-sectors':         '/assets/banners/industries/Emerging Sectors.png',
   'health-wellness':        '/assets/banners/industries/health wellness.png',
   'herbal-extracts':        '/assets/banners/industries/herbal.png',
   'household':              '/assets/banners/industries/household.png',

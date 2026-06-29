@@ -1160,7 +1160,7 @@ import { industries } from "../data/industries";
 import { useAuth } from "../context/AuthContext";
 import { staggerContainer, fadeInUp } from "../lib/variants";
 import TableContent from "./TableContent";
-import KeyWords from "./KeyWords ";
+import KeyWords from "./KeyWords";
 import SamplePreview from "./SamplePreview";
 
 // const SCOPE_COVERAGE = [
@@ -1603,6 +1603,7 @@ export default function ReportDetail({
       <div className="bg-white border-b border-slate-100 pt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           {/* Breadcrumb */}
+         
           <nav
             className="flex items-center gap-2 text-xs text-slate-400 mb-6"
             aria-label="Breadcrumb"
@@ -1618,13 +1619,13 @@ export default function ReportDetail({
               Reports
             </Link>
             <ChevronRight size={12} aria-hidden="true" />
-            <span className="hover:text-primary transition-colors">
+            <span className="text-slate-600 truncate max-w-xs">
               {primaryTopic}
             </span>
-            <ChevronRight size={12} aria-hidden="true" />
-            <span className="text-slate-600 truncate max-w-xs">
+            {/* <ChevronRight size={12} aria-hidden="true" />
+            <span className="text-slate-600 truncate max-w-xs"> */}
               {/* {report.shortTitle} */}
-            </span>
+            {/* </span> */}
           </nav>
 
           <div className="flex flex-col lg:flex-row gap-8 items-start pb-8">

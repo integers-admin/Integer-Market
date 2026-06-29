@@ -71,8 +71,8 @@ export const industries = [
   },
   {
     id: 8,
-    slug: "future-updates",
-    name: "Future Updates",
+    slug: "emerging-sectors",
+    name: "Emerging Sectors",
     icon: "Rss",
     description:
       "Upcoming market research topics and emerging industry trend reports.",
@@ -219,8 +219,8 @@ export const industryCategories = [
     ],
   },
   {
-    slug: "future-updates",
-    name: "Future Updates",
+    slug: "emerging-sectors",
+    name: "Emerging Sectors",
     icon: "Rss",
     color: "#6366f1",
     description:
