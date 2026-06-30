@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import {
   Eye,
@@ -47,12 +47,9 @@ export default function Login() {
   const [touched, setTouched] = useState({ email: false, password: false });
   const [showPass, setShowPass] = useState(false);
   const [serverError, setServerError] = useState("");
+  const [redirect, setRedirect] = useState("/");
   const { login, isLoading } = useAuth();
   const router = useRouter();
-
-  const searchParams = useSearchParams();
-
-const redirect = searchParams.get("redirect");
 
   const update = (k) => (e) => setForm((p) => ({ ...p, [k]: e.target.value }));
   const touch = (k) => () => setTouched((p) => ({ ...p, [k]: true }));
@@ -86,19 +83,32 @@ const redirect = searchParams.get("redirect");
       const success = await login(login_data);
       // console.log("login success:", success);
       if (success) {
-        router.push(redirect || "/");
+        router.replace(redirect);
       }
     } catch {
       setServerError("Unable to sign in. Please try again.");
     }
   };
 
+  // useEffect(() => {
+  //   let auth = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
+  //   if (auth) {
+  //     router.push("/");
+  //   }
+  // }, []);
+
   useEffect(() => {
-    let auth = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
-    if (auth) {
-      router.push("/");
-    }
+    const value = new URLSearchParams(window.location.search).get("redirect");
+    setRedirect(value || "/");
   }, []);
+
+  useEffect(() => {
+    const auth = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
+
+    if (auth) {
+      router.replace(redirect);
+    }
+  }, [redirect, router]);
 
   const inputBase =
     "w-full px-4 py-3 bg-white border rounded-xl text-slate-800 text-sm placeholder:text-slate-400 focus:outline-none transition-colors";
@@ -118,12 +128,15 @@ const redirect = searchParams.get("redirect");
           className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-white/5 translate-y-1/3 -translate-x-1/4"
           aria-hidden="true"
         />
-        
+
         {/* <Link href="/" aria-label="Integer Market home">
           <Logo light className="h-9 w-auto" />
         </Link> */}
 
-        <div className="h-10 w-25 cursor-pointer" onClick={()=>router.push("/")}>
+        <div
+          className="h-10 w-25 cursor-pointer"
+          onClick={() => router.push("/")}
+        >
           <img src="./assets/int_mark_Logo.svg" alt="icon" />
         </div>
 
@@ -137,7 +150,9 @@ const redirect = searchParams.get("redirect");
             Intelligence that drives better business decisions
           </h2>
           <p className="text-white/70 mb-10 leading-relaxed">
-            In-depth market research reports across consumer goods, health, wellness, ingredients & materials with market size, share, growth forecasts, and competitor insights.
+            In-depth market research reports across consumer goods, health,
+            wellness, ingredients & materials with market size, share, growth
+            forecasts, and competitor insights.
           </p>
           <ul className="space-y-4" role="list">
             {features.map(({ icon: Icon, text }) => (
