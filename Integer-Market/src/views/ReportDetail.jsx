@@ -1124,7 +1124,7 @@
 
 // "use client";
 import { useState, useEffect } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, usePathname, useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useCart } from "../context/CartContext";
 import { motion, AnimatePresence } from "framer-motion";
@@ -1516,6 +1516,9 @@ export default function ReportDetail({
   const [activeTab, setActiveTab] = useState("scope");
   const router = useRouter();
 
+  const pathname = usePathname();
+const searchParams = useSearchParams();
+
   // const industryData = report
   //   ? industries.find((i) => i.slug === report.industry)
   //   : null;
@@ -1558,18 +1561,37 @@ export default function ReportDetail({
   //   setShowCheckout(true);
   // };
 
-  const handleAddToCart = () => {
-    if (!seoSlug) return;
-    const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
+  // const handleAddToCart = () => {
+  //   if (!seoSlug) return;
+  //   const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
 
-    if (!token) {
-      router.push("/login");
-      return;
-    }
-    addToCart(seoSlug);
-    setCartAdded(true);
-    setTimeout(() => setCartAdded(false), 2000);
-  };
+  //   if (!token) {
+  //     router.push("/login");
+  //     return;
+  //   }
+  //   addToCart(seoSlug);
+  //   setCartAdded(true);
+  //   setTimeout(() => setCartAdded(false), 2000);
+  // };
+
+  const handleAddToCart = () => {
+  if (!seoSlug) return;
+
+  const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
+
+  if (!token) {
+    const currentPage =
+      pathname +
+      (searchParams.toString() ? `?${searchParams.toString()}` : "");
+
+    router.push(`/login?redirect=${encodeURIComponent(currentPage)}`);
+    return;
+  }
+
+  addToCart(seoSlug);
+  setCartAdded(true);
+  setTimeout(() => setCartAdded(false), 2000);
+};
 
   // const handleBuyNow = () => {
   //   // addToCart(report);
@@ -1577,16 +1599,30 @@ export default function ReportDetail({
   //   router.push("/checkout");
   // };
 
-  const handleBuyNow = (slug) => {
-    if (!slug) return;
+  // const handleBuyNow = (slug) => {
+  //   if (!slug) return;
 
-    const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
-    if (!token) {
-      router.push("/login");
-      return;
-    }
-    router.push(`/checkout?reportId=${slug}`);
-  };
+  //   const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
+  //   if (!token) {
+  //     router.push("/login");
+  //     return;
+  //   }
+  //   router.push(`/checkout?reportId=${slug}`);
+  // };
+
+  const handleBuyNow = (slug) => {
+  if (!slug) return;
+
+  const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
+
+  if (!token) {
+    const redirect = `/checkout?reportId=${slug}`;
+    router.push(`/login?redirect=${encodeURIComponent(redirect)}`);
+    return;
+  }
+
+  router.push(`/checkout?reportId=${slug}`);
+};
 
   // const handlePurchaseSuccess = () => purchaseReport(report.id);
 

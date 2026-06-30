@@ -12,11 +12,11 @@ import {
 import { useAuth } from "../../context/AuthContext";
 import { useCart } from "../../context/CartContext";
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export default function ReportCard({ report }) {
   // const { hasReport } = useAuth()
-  const { addToCart, isInCart } = useCart()
+  const { addToCart, isInCart } = useCart();
   // const owned = hasReport(report.id)
   // const inCart = isInCart(report.id)
 
@@ -24,17 +24,35 @@ export default function ReportCard({ report }) {
 
     const router = useRouter();
 
+    const pathname = usePathname();
+const searchParams = useSearchParams();
+
+  // const handleAddToCart = (report) => {
+  //   const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
+
+  // if (!token) {
+  //   router.push("/login");
+  //   return;
+  // }
+  //   addToCart(report);
+  //   // setCartAdded(true);
+  //   // setTimeout(() => setCartAdded(false), 2000);
+  // };
+
   const handleAddToCart = (report) => {
-    const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
+  const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
 
   if (!token) {
-    router.push("/login");
+    const currentPage =
+      pathname +
+      (searchParams.toString() ? `?${searchParams.toString()}` : "");
+
+    router.push(`/login?redirect=${encodeURIComponent(currentPage)}`);
     return;
   }
-    addToCart(report);
-    // setCartAdded(true);
-    // setTimeout(() => setCartAdded(false), 2000);
-  };
+
+  addToCart(report);
+};
 
   const handleDownload = async (slug) => {
   try {

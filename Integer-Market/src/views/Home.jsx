@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useRef, useMemo } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Search,
@@ -175,6 +175,9 @@ export default function Home() {
 
   const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
+  const pathname = usePathname();
+const searchParams = useSearchParams();
+
   useEffect(() => {
     document.title =
       "Integer Market | Global Market Research Reports - Pharma, Nutraceuticals & Ingredients";
@@ -328,18 +331,35 @@ export default function Home() {
     getHomeReportData();
   }, []);
 
+  // const handleAddToCart = (report) => {
+  //   const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
+
+  //   if (!token) {
+  //     router.push("/login");
+  //     return;
+  //   }
+
+  //   addToCart(report);
+  //   // setCartAdded(true);
+  //   // setTimeout(() => setCartAdded(false), 2000);
+  // };
+
   const handleAddToCart = (report) => {
-    const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
+  const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
 
-    if (!token) {
-      router.push("/login");
-      return;
-    }
+  if (!token) {
+    const currentPage =
+      pathname +
+      (searchParams.toString() ? `?${searchParams.toString()}` : "");
 
-    addToCart(report);
-    // setCartAdded(true);
-    // setTimeout(() => setCartAdded(false), 2000);
-  };
+    router.push(`/login?redirect=${encodeURIComponent(currentPage)}`);
+    return;
+  }
+
+  addToCart(report);
+  // setCartAdded(true);
+  // setTimeout(() => setCartAdded(false), 2000);
+};
 
   const handleDownload = async (slug) => {
     try {

@@ -783,7 +783,7 @@
 
 "use client";
 import { useState, useMemo, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import {
   Search,
@@ -834,6 +834,9 @@ export default function Reports() {
   const [totalReport, setTotalReport] = useState(null);
 
   const router = useRouter();
+
+  const pathname = usePathname();
+const searchParams = useSearchParams();
 
   const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -979,17 +982,34 @@ export default function Reports() {
     });
   };
 
-  const handleAddToCart = (report) => {
-    const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
+  // const handleAddToCart = (report) => {
+  //   const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
 
-    if (!token) {
-      router.push("/login");
-      return;
-    }
-    addToCart(report);
-    // setCartAdded(true);
-    // setTimeout(() => setCartAdded(false), 2000);
-  };
+  //   if (!token) {
+  //     router.push("/login");
+  //     return;
+  //   }
+  //   addToCart(report);
+  //   // setCartAdded(true);
+  //   // setTimeout(() => setCartAdded(false), 2000);
+  // };
+
+  const handleAddToCart = (report) => {
+  const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
+
+  if (!token) {
+    const currentPage =
+      pathname +
+      (searchParams.toString() ? `?${searchParams.toString()}` : "");
+
+    router.push(`/login?redirect=${encodeURIComponent(currentPage)}`);
+    return;
+  }
+
+  addToCart(report);
+  // setCartAdded(true);
+  // setTimeout(() => setCartAdded(false), 2000);
+};
 
   const handleDownload = async (slug) => {
     try {

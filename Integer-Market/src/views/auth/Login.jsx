@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import {
   Eye,
@@ -50,6 +50,10 @@ export default function Login() {
   const { login, isLoading } = useAuth();
   const router = useRouter();
 
+  const searchParams = useSearchParams();
+
+const redirect = searchParams.get("redirect");
+
   const update = (k) => (e) => setForm((p) => ({ ...p, [k]: e.target.value }));
   const touch = (k) => () => setTouched((p) => ({ ...p, [k]: true }));
 
@@ -82,7 +86,7 @@ export default function Login() {
       const success = await login(login_data);
       // console.log("login success:", success);
       if (success) {
-        router.push("/");
+        router.push(redirect || "/");
       }
     } catch {
       setServerError("Unable to sign in. Please try again.");
