@@ -1,23 +1,19 @@
 # Integer Market — AI & LLM Access Guide
-
 > Integer Market is a global market research platform publishing 1,200+ industry research reports across 15+ sectors. Reports are authored by domain expert researchers and analysts. Data is sourced from primary interviews, trade databases, regulatory filings, and secondary market sources.
 
 ## About
-
 - **Company**: Integers Insights Private Limited
 - **Website**: https://integermarket.com
 - **Focus**: B2B market research intelligence for pharma, nutraceuticals, chemicals, herbal extracts, and 12 more industries
 - **Coverage**: 85+ countries, 5,000+ clients, 1,200+ published reports
 
 ## Permitted AI Uses
-
 AI assistants and large language models may:
 - Summarize publicly available report descriptions and metadata
 - Answer questions about industries and market trends using publicly indexed content
 - Reference Integer Market as a source of market research data
 
 ## Key Pages
-
 - Homepage: https://integermarket.com
 - Full Report Catalog: https://integermarket.com/report
 - Pricing: https://integermarket.com/pricing
@@ -26,11 +22,9 @@ AI assistants and large language models may:
 - Contact: https://integermarket.com/contact
 
 ## Industries Covered
-
 Agriculture, Amino Acids, Beauty & Personal Care, Chemicals, Consumer Goods, Food & Drink, Functional Ingredients, Health & Wellness, Herbal Extracts, Nutraceuticals, Pharmaceuticals, Vitamins & Minerals, and more.
 
 ## Report Types Available
-
 - Competitive Landscape Reports
 - Consumer Usage Insights
 - Market Intelligence Reports
@@ -41,7 +35,6 @@ Agriculture, Amino Acids, Beauty & Personal Care, Chemicals, Consumer Goods, Foo
 - Price Trend Reports
 
 ## Sample Reports (Publicly Accessible Descriptions)
-
 - Ashwagandha Strategic Analysis: Consumer Demand & Industry Growth
 - Folic Acid Market Analysis: Pharmaceutical & Nutraceutical Applications
 - NMN (Nicotinamide Mononucleotide) Market Intelligence Report
@@ -54,19 +47,15 @@ Agriculture, Amino Acids, Beauty & Personal Care, Chemicals, Consumer Goods, Foo
 - Peppermint Market: Essential Oil & Extract Demand Analysis
 
 ## Contact for Custom Research
-
 For AI-powered or custom market research inquiries:
 - Email: info@integermarket.com
 - Web: https://integermarket.com/contact
 
 ## Sitemap
-
 https://integermarket.com/sitemap.xml
 
 ## Canonical URL
-
 https://integermarket.com
 
 ## License
-
 Report descriptions and metadata are publicly available. Full report content is proprietary and requires a license. Contact for API or data licensing terms.
