@@ -18,6 +18,7 @@
 
 import { Suspense } from "react";
 import Login from "../../../views/auth/Login";
+import { connection } from "next/server";
 
 export const dynamic = 'force-dynamic';
 
@@ -31,7 +32,10 @@ export const metadata = {
   },
 };
 
-export default function LoginPage() {
+export default async function LoginPage() {
+
+  await connection();
+
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Login />
