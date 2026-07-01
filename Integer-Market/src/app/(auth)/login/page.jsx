@@ -19,6 +19,8 @@
 import { Suspense } from "react";
 import Login from "../../../views/auth/Login";
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
   title: "Log In",
   description:
