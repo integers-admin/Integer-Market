@@ -1517,7 +1517,7 @@ export default function ReportDetail({
   const router = useRouter();
 
   const pathname = usePathname();
-const searchParams = useSearchParams();
+// const searchParams = useSearchParams();
 
   // const industryData = report
   //   ? industries.find((i) => i.slug === report.industry)
@@ -1579,12 +1579,17 @@ const searchParams = useSearchParams();
 
   const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
 
-  if (!token) {
-    const currentPage =
-      pathname +
-      (searchParams.toString() ? `?${searchParams.toString()}` : "");
+  // if (!token) {
+  //   const currentPage =
+  //     pathname +
+  //     (searchParams.toString() ? `?${searchParams.toString()}` : "");
 
-    router.push(`/login?redirect=${encodeURIComponent(currentPage)}`);
+  //   router.push(`/login?redirect=${encodeURIComponent(currentPage)}`);
+  //   return;
+  // }
+
+  if (!token) {
+    router.push(`/login?redirect=${encodeURIComponent(pathname)}`);
     return;
   }
 
