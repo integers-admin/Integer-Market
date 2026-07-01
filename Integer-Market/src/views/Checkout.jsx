@@ -2235,6 +2235,9 @@ function OrderSummary({
 
 // ── Main Checkout page ────────────────────────────────────────────────────────
 export default function Checkout({ reportId }) {
+
+  console.log("reportId: ",reportId);
+
   const {
     cartItems,
     subtotal,

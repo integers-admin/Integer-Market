@@ -14,8 +14,33 @@
 // }
 
 
+// import { Suspense } from "react";
+// import Checkout from "../../views/Checkout";
+
+// export const dynamic = "force-dynamic";
+
+// export const metadata = {
+//   title: "Checkout",
+//   description: "Complete your market research report purchase securely.",
+//   robots: {
+//     index: false,
+//     follow: false,
+//   },
+// };
+
+// export default function CheckoutPage() {
+//   return (
+//     <Suspense fallback={<div>Loading...</div>}>
+//       <Checkout />
+//     </Suspense>
+//   );
+// }
+
+
+
 import { Suspense } from "react";
 import Checkout from "../../views/Checkout";
+import { connection } from "next/server";
 
 export const dynamic = "force-dynamic";
 
@@ -28,10 +53,15 @@ export const metadata = {
   },
 };
 
-export default function CheckoutPage() {
+export default async function CheckoutPage({ searchParams }) {
+
+  await connection()
+
+  const params = await searchParams;
+
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <Checkout />
+      <Checkout reportId={params?.reportId || null} />
     </Suspense>
   );
 }
