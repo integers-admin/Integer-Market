@@ -72,35 +72,20 @@
 // }
 
 
+// src/app/checkout/page.jsx
+"use client";
 
 import { Suspense } from "react";
-import dynamic from "next/dynamic";
+import { useSearchParams } from "next/navigation";
+import Checkout from "../../../views/Checkout";
 
-const Checkout = dynamic(
-  () => import("../../../views/Checkout"),
-  { ssr: false }
-);
-
-import { connection } from "next/server";
-
-export const dynamic = "force-dynamic";
-
-export const metadata = {
-  title: "Checkout",
-  description: "Complete your market research report purchase securely.",
-  robots: {
-    index: false,
-    follow: false,
-  },
-};
-
-export default async function CheckoutPage({ searchParams }) {
-  await connection();
-  const params = await searchParams;
+export default function CheckoutPage() {
+  const searchParams = useSearchParams();
+  const reportId = searchParams.get("reportId");
 
   return (
     <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
-      <Checkout reportId={params?.reportId || null} />
+      <Checkout reportId={reportId} />
     </Suspense>
   );
 }
