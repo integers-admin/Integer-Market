@@ -1124,7 +1124,7 @@
 
 // "use client";
 import { useState, useEffect } from "react";
-import { useParams, usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { useCart } from "../context/CartContext";
 import { motion, AnimatePresence } from "framer-motion";
