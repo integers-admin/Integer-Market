@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useRef, useMemo } from "react";
 import Link from "next/link";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Search,
@@ -176,7 +176,7 @@ export default function Home() {
   const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const pathname = usePathname();
-const searchParams = useSearchParams();
+// const searchParams = useSearchParams();
 
   useEffect(() => {
     document.title =
@@ -347,14 +347,19 @@ const searchParams = useSearchParams();
   const handleAddToCart = (report) => {
   const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
 
-  if (!token) {
-    const currentPage =
-      pathname +
-      (searchParams.toString() ? `?${searchParams.toString()}` : "");
+  // if (!token) {
+  //   const currentPage =
+  //     pathname +
+  //     (searchParams.toString() ? `?${searchParams.toString()}` : "");
 
-    router.push(`/login?redirect=${encodeURIComponent(currentPage)}`);
-    return;
-  }
+  //   router.push(`/login?redirect=${encodeURIComponent(currentPage)}`);
+  //   return;
+  // }
+
+  if (!token) {
+      router.push(`/login?redirect=${encodeURIComponent(pathname)}`);
+      return;
+    }
 
   addToCart(report);
   // setCartAdded(true);

@@ -783,7 +783,7 @@
 
 "use client";
 import { useState, useMemo, useEffect } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import {
   Search,
@@ -836,7 +836,7 @@ export default function Reports() {
   const router = useRouter();
 
   const pathname = usePathname();
-const searchParams = useSearchParams();
+  // const searchParams = useSearchParams();
 
   const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -995,21 +995,22 @@ const searchParams = useSearchParams();
   // };
 
   const handleAddToCart = (report) => {
-  const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
+    const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
 
-  if (!token) {
-    const currentPage =
-      pathname +
-      (searchParams.toString() ? `?${searchParams.toString()}` : "");
+    // if (!token) {
+    //   const currentPage =
+    //     pathname +
+    //     (searchParams.toString() ? `?${searchParams.toString()}` : "");
 
-    router.push(`/login?redirect=${encodeURIComponent(currentPage)}`);
-    return;
-  }
+    if (!token) {
+      router.push(`/login?redirect=${encodeURIComponent(pathname)}`);
+      return;
+    }
 
-  addToCart(report);
-  // setCartAdded(true);
-  // setTimeout(() => setCartAdded(false), 2000);
-};
+    addToCart(report);
+    // setCartAdded(true);
+    // setTimeout(() => setCartAdded(false), 2000);
+  };
 
   const handleDownload = async (slug) => {
     try {
