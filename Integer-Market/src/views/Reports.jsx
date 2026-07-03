@@ -797,6 +797,8 @@ import {
   ArrowRight,
   Check,
   Download,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import ReportCard from "../components/ui/ReportCard";
 import Badge from "../components/ui/Badge";
@@ -830,6 +832,11 @@ export default function Reports() {
   const [industry, setIndustry] = useState([]);
   const [sub_industry, setSub_industry] = useState([]);
   const [sort, setSort] = useState("");
+
+  //pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const limit = 9;
+  const [totalPages, setTotalPages] = useState(1);
 
   const [totalReport, setTotalReport] = useState(null);
 
@@ -876,6 +883,8 @@ export default function Reports() {
           ...selectedFilters,
           sort,
           q: query,
+          page: currentPage,
+          limit: limit,
         },
         {
           headers: {
@@ -884,9 +893,23 @@ export default function Reports() {
         },
       );
 
+      // if (response?.status === 200) {
+      //   setListData(response?.data?.items ?? []);
+      //   setTotalReport(response?.data?.total ?? null);
+      //   // total pages calculate
+
+      //   const total = response?.data?.total ?? 0;
+      //   setTotalPages(Math.ceil(total / limit));
+      //   setTotalPages(Math.ceil((listData?.total ?? 0) / limit));
+      // }
+
       if (response?.status === 200) {
-        setListData(response?.data?.items ?? []);
-        setTotalReport(response?.data?.total ?? null);
+        const items = response?.data?.items ?? [];
+        const total = response?.data?.total ?? 0;
+
+        setListData(items);
+        setTotalReport(total);
+        setTotalPages(Math.max(1, Math.ceil(total / limit)));
       }
 
       // console.log("getListData: ", response);
@@ -897,6 +920,9 @@ export default function Reports() {
       // setTotalReport(listData?.total ?? 0);
     } catch (err) {
       console.log("something went wrong...", err);
+      setListData([]);
+      setTotalReport(0);
+      setTotalPages(1);
     } finally {
       setIsListLoading(false);
     }
@@ -918,23 +944,11 @@ export default function Reports() {
     }
   };
 
-  useEffect(() => {
-    getCheckBoxData();
-  }, []);
-
   // console.log("query: ",query);
 
   // useEffect(() => {
   //   getListData();
   // }, [selectedFilters, sort]);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      getListData();
-    }, 500);
-
-    return () => clearTimeout(timer);
-  }, [query, selectedFilters, sort]);
 
   // useEffect(() => {
   //   const t = setTimeout(() => setIsLoading(false), 800)
@@ -975,11 +989,12 @@ export default function Reports() {
     setSelectedFilters({
       industries: [],
       sub_industries: [],
-      report_types: [],
-      regions: [],
-      countries: [],
-      use_cases: [],
+      // report_types: [],
+      // regions: [],
+      // countries: [],
+      // use_cases: [],
     });
+    setCurrentPage(1);
   };
 
   // const handleAddToCart = (report) => {
@@ -1029,6 +1044,61 @@ export default function Reports() {
       console.log("Download error:", error);
     }
   };
+
+  useEffect(() => {
+    getCheckBoxData();
+  }, []);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedFilters, sort, query]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      getListData();
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [query, selectedFilters, sort, currentPage]);
+
+  // pagination
+  const pageNumbers = [];
+
+  if (totalPages <= 5) {
+    for (let i = 1; i <= totalPages; i++) {
+      pageNumbers.push(i);
+    }
+  } else {
+    if (currentPage <= 3) {
+      pageNumbers.push(1, 2, 3, 4, "...", totalPages);
+    } else if (currentPage >= totalPages - 2) {
+      pageNumbers.push(
+        1,
+        "...",
+        totalPages - 3,
+        totalPages - 2,
+        totalPages - 1,
+        totalPages,
+      );
+    } else {
+      pageNumbers.push(
+        1,
+        "...",
+        currentPage - 1,
+        currentPage,
+        currentPage + 1,
+        "...",
+        totalPages,
+      );
+    }
+  }
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [currentPage]);
 
   const FilterPanel = ({
     industry,
@@ -1576,6 +1646,49 @@ export default function Reports() {
                   );
                 })}
               </motion.div>
+            )}
+
+            {/* pagination */}
+            {totalPages > 1 && (
+              <div className="mt-10 flex justify-center">
+                <div className="flex flex-wrap justify-center items-center gap-2">
+                  <button
+                    disabled={currentPage === 1}
+                    onClick={() => setCurrentPage((prev) => prev - 1)}
+                    className="bg-white hover:bg-gray-100 cursor-pointer px-3 py-1 border rounded disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    Prev
+                  </button>
+
+                  {pageNumbers.map((item, index) =>
+                    item === "..." ? (
+                      <span key={index} className="px-2">
+                        ...
+                      </span>
+                    ) : (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentPage(item)}
+                        className={`min-w-9 h-9 px-3 border cursor-pointer rounded ${
+                          currentPage === item
+                            ? "bg-primary text-white"
+                            : "bg-white hover:bg-gray-100"
+                        }`}
+                      >
+                        {item}
+                      </button>
+                    ),
+                  )}
+
+                  <button
+                    disabled={currentPage === totalPages}
+                    onClick={() => setCurrentPage((prev) => prev + 1)}
+                    className="bg-white hover:bg-gray-100 cursor-pointer px-3 py-1 border rounded disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    Next
+                  </button>
+                </div>
+              </div>
             )}
           </div>
         </div>

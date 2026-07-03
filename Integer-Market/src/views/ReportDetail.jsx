@@ -1151,6 +1151,7 @@ import {
   TrendingUp,
   Image as ImageIcon,
   Zap,
+  ChevronDown,
 } from "lucide-react";
 import Badge from "../components/ui/Badge";
 import ScrollReveal from "../components/ui/ScrollReveal";
@@ -1501,6 +1502,7 @@ export default function ReportDetail({
   cagrData,
   coverageDurationYears,
   tableContent,
+  faqs,
   seoKeywords,
   subIndustry,
   pdfPath,
@@ -1514,10 +1516,13 @@ export default function ReportDetail({
   const [showCheckout, setShowCheckout] = useState(false);
   const [cartAdded, setCartAdded] = useState(false);
   const [activeTab, setActiveTab] = useState("scope");
+
+  const [openFaq, setOpenFaq] = useState(0);
+
   const router = useRouter();
 
   const pathname = usePathname();
-// const searchParams = useSearchParams();
+  // const searchParams = useSearchParams();
 
   // const industryData = report
   //   ? industries.find((i) => i.slug === report.industry)
@@ -1575,28 +1580,28 @@ export default function ReportDetail({
   // };
 
   const handleAddToCart = () => {
-  if (!seoSlug) return;
+    if (!seoSlug) return;
 
-  const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
+    const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
 
-  // if (!token) {
-  //   const currentPage =
-  //     pathname +
-  //     (searchParams.toString() ? `?${searchParams.toString()}` : "");
+    // if (!token) {
+    //   const currentPage =
+    //     pathname +
+    //     (searchParams.toString() ? `?${searchParams.toString()}` : "");
 
-  //   router.push(`/login?redirect=${encodeURIComponent(currentPage)}`);
-  //   return;
-  // }
+    //   router.push(`/login?redirect=${encodeURIComponent(currentPage)}`);
+    //   return;
+    // }
 
-  if (!token) {
-    router.push(`/login?redirect=${encodeURIComponent(pathname)}`);
-    return;
-  }
+    if (!token) {
+      router.push(`/login?redirect=${encodeURIComponent(pathname)}`);
+      return;
+    }
 
-  addToCart(seoSlug);
-  setCartAdded(true);
-  setTimeout(() => setCartAdded(false), 2000);
-};
+    addToCart(seoSlug);
+    setCartAdded(true);
+    setTimeout(() => setCartAdded(false), 2000);
+  };
 
   // const handleBuyNow = () => {
   //   // addToCart(report);
@@ -1616,18 +1621,18 @@ export default function ReportDetail({
   // };
 
   const handleBuyNow = (slug) => {
-  if (!slug) return;
+    if (!slug) return;
 
-  const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
+    const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
 
-  if (!token) {
-    const redirect = `/checkout?reportId=${slug}`;
-    router.push(`/login?redirect=${encodeURIComponent(redirect)}`);
-    return;
-  }
+    if (!token) {
+      const redirect = `/checkout?reportId=${slug}`;
+      router.push(`/login?redirect=${encodeURIComponent(redirect)}`);
+      return;
+    }
 
-  router.push(`/checkout?reportId=${slug}`);
-};
+    router.push(`/checkout?reportId=${slug}`);
+  };
 
   // const handlePurchaseSuccess = () => purchaseReport(report.id);
 
@@ -1644,7 +1649,7 @@ export default function ReportDetail({
       <div className="bg-white border-b border-slate-100 pt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           {/* Breadcrumb */}
-         
+
           <nav
             className="flex items-center gap-2 text-xs text-slate-400 mb-6"
             aria-label="Breadcrumb"
@@ -1665,7 +1670,7 @@ export default function ReportDetail({
             </span>
             {/* <ChevronRight size={12} aria-hidden="true" />
             <span className="text-slate-600 truncate max-w-xs"> */}
-              {/* {report.shortTitle} */}
+            {/* {report.shortTitle} */}
             {/* </span> */}
           </nav>
 
@@ -1677,7 +1682,12 @@ export default function ReportDetail({
             >
               <div className="w-full h-full flex flex-col items-center justify-center gap-2">
                 {imgPath && (
-                  <img src={imgPath} alt="image" className="h-full w-full" loading="lazy" />
+                  <img
+                    src={imgPath}
+                    alt="image"
+                    className="h-full w-full"
+                    loading="lazy"
+                  />
                 )}
                 {/* <div
                   className="size-14 rounded-xl flex items-center justify-center"
@@ -1869,7 +1879,7 @@ export default function ReportDetail({
                     </div>
                   </div>
 
-                  <div className="bg-white rounded-2xl border border-slate-100 p-6 mb-6">
+                  {/* <div className="bg-white rounded-2xl border border-slate-100 p-6 mb-6">
                     <h2 className="text-lg font-bold text-slate-900 mb-3">
                       Why Our Reports Deliver Strategic Advantage
                     </h2>
@@ -1880,17 +1890,63 @@ export default function ReportDetail({
                       opportunities, assess risks, and make informed strategic
                       moves in competitive markets.
                     </p>
-                    {/* <div className="flex flex-wrap gap-2 mt-4">
-                      {report.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-medium"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div> */}
-                  </div>
+                  </div> */}
+                  {faqs?.length > 0 && (
+                    <div className="bg-white rounded-2xl border border-slate-100 p-4 sm:p-6 mb-6">
+                      <div className="mb-5 sm:mb-6">
+                        <h2 className="text-lg sm:text-xl font-bold text-slate-900">
+                          Frequently Asked Questions
+                        </h2>
+                      </div>
+
+                      <div className="space-y-3">
+                        {faqs.map((faq, index) => {
+                          const isOpen = openFaq === index;
+
+                          return (
+                            <div
+                              key={index}
+                              className={`rounded-xl border transition-all duration-300 overflow-hidden ${
+                                isOpen
+                                  ? "border-primary shadow-md"
+                                  : "border-slate-200 hover:border-primary/40"
+                              }`}
+                            >
+                              <button
+                                onClick={() =>
+                                  setOpenFaq(isOpen ? null : index)
+                                }
+                                className="w-full flex items-center justify-between gap-3 px-4 sm:px-5 py-4 text-left cursor-pointer"
+                              >
+                                <span className="flex-1 text-sm sm:text-base font-semibold text-slate-800 leading-6">
+                                  {faq.question}
+                                </span>
+
+                                <ChevronDown
+                                  size={18}
+                                  className={`flex-shrink-0 text-primary transition-transform duration-300 ${
+                                    isOpen ? "rotate-180" : ""
+                                  }`}
+                                />
+                              </button>
+
+                              <div
+                                className={`grid transition-all duration-300 ease-in-out ${
+                                  isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                                }`}
+                              >
+                                <div className="overflow-hidden">
+                                  <div className="border-t border-slate-100 px-4 sm:px-5 py-4 text-sm text-slate-600 leading-7">
+                                    {faq.answer}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
                 </motion.div>
               )}
 

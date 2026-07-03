@@ -660,6 +660,8 @@ export default async function ReportDetailPage({ params }) {
   const reportCovers = scope?.[0]?.values ?? [];
   const reportSupports = scope?.[1]?.values ?? [];
 
+  const faqs = Array.isArray(data?.faqs) ? data?.faqs : [];
+
   const reportTitle = priceInfo?.title || "Market Research Report";
   const reportDescription =
     priceInfo?.seo_description || priceInfo?.subtitle || "";
@@ -841,6 +843,7 @@ export default async function ReportDetailPage({ params }) {
         reportCovers={reportCovers}
         reportSupports={reportSupports}
         tableContent={sections}
+        faqs={faqs}
         imgPath={priceInfo?.image_path ?? null}
         title={priceInfo?.title ?? ""}
         subTitle={priceInfo?.subtitle ?? ""}
