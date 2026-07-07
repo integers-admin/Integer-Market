@@ -362,7 +362,7 @@ export default function Navbar() {
                       aria-hidden="true"
                     />
                   </div>
-                  <span className="text-sm font-medium">
+                  <span className="text-sm font-medium capitalize">
                     {parsedData?.full_name}
                   </span>
                   <ChevronDown

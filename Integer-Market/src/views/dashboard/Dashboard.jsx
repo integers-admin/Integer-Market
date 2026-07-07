@@ -567,12 +567,12 @@ export default function Dashboard() {
   // const getMeta = (reportId) =>
   //   user.purchasedReportsMeta?.find((m) => m.reportId === reportId) ?? null;
 
-  const handleViewReport = (slug) => {
-    // Opens report detail page in a new tab (in production this would open the PDF directly)
-    window.open(`/report-name/${slug}`, "_blank", "noopener,noreferrer");
-  };
+  // const handleViewReport = (slug) => {
+  //   // Opens report detail page in a new tab (in production this would open the PDF directly)
+  //   window.open(`/report-name/${slug}`, "_blank", "noopener,noreferrer");
+  // };
 
-  const handleDownload = async (slug) => {
+  const handleViewReport = async (slug) => {
     try {
       const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
 
@@ -860,9 +860,16 @@ export default function Dashboard() {
                             <FileText size={16} aria-hidden="true" />
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-sm font-semibold text-slate-800 leading-snug">
+                            {/* <p className="text-sm font-semibold text-slate-800 leading-snug">
                               {r.title}
-                            </p>
+                            </p> */}
+
+                            <Link
+                              href={`/report-name/${r.slug}`}
+                              className="text-sm font-semibold text-slate-900 hover:text-primary transition-colors duration-200 focus-visible:text-primary"
+                            >
+                              {r.title}
+                            </Link>
                             <p className="text-xs text-slate-400 mt-0.5">
                               {r.industry}
                               {/* · {r.reportTypeName}  */}· {r.page_count}{" "}
@@ -879,14 +886,14 @@ export default function Dashboard() {
                               <ExternalLink size={12} aria-hidden="true" />
                               View
                             </button>
-                            <button
+                            {/* <button
                               aria-label={`Download ${r.title}`}
                               onClick={() => handleDownload(r.slug)}
                               className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-primary/10 text-primary text-xs font-semibold hover:bg-primary/20 transition-colors cursor-pointer"
                             >
                               <Download size={12} aria-hidden="true" />
                               Download
-                            </button>
+                            </button> */}
                           </div>
                         </div>
                         <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 px-4 pb-3.5 border-t border-slate-100 pt-3">

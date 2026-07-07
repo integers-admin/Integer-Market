@@ -589,7 +589,6 @@ async function getReportDetail(slug) {
     if (!data) {
       return null;
     }
-
     return data;
   } catch (error) {
     console.error("Report fetch failed:", error);
@@ -684,7 +683,6 @@ export default async function ReportDetailPage({ params }) {
       "@type": "Offer",
       price: reportPrice,
       priceCurrency: "USD",
-      priceValidUntil: "2026-12-31",
       availability: "https://schema.org/InStock",
       url: `${baseUrl}/report-name/${slug}`,
     },

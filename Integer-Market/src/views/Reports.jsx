@@ -1655,7 +1655,7 @@ export default function Reports() {
                   <button
                     disabled={currentPage === 1}
                     onClick={() => setCurrentPage((prev) => prev - 1)}
-                    className="bg-white hover:bg-gray-100 cursor-pointer px-3 py-1 border rounded disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="bg-white hover:bg-gray-100 cursor-pointer px-3 py-1 border border-gray-200 rounded disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Prev
                   </button>
@@ -1669,7 +1669,7 @@ export default function Reports() {
                       <button
                         key={index}
                         onClick={() => setCurrentPage(item)}
-                        className={`min-w-9 h-9 px-3 border cursor-pointer rounded ${
+                        className={`min-w-9 h-9 px-3 border border-gray-200 cursor-pointer rounded ${
                           currentPage === item
                             ? "bg-primary text-white"
                             : "bg-white hover:bg-gray-100"
@@ -1683,7 +1683,7 @@ export default function Reports() {
                   <button
                     disabled={currentPage === totalPages}
                     onClick={() => setCurrentPage((prev) => prev + 1)}
-                    className="bg-white hover:bg-gray-100 cursor-pointer px-3 py-1 border rounded disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="bg-white hover:bg-gray-100 cursor-pointer px-3 py-1 border border-gray-200 rounded disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Next
                   </button>
