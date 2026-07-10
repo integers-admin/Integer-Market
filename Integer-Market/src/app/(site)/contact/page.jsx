@@ -104,12 +104,12 @@ export const metadata = {
   title: 'Contact | Get Help Finding Reports',
   description: "Need help finding the right market research report? Contact the Integer Market team for queries on reports, purchases, or custom research needs. We're here to help.",
   alternates: {
-    canonical: 'https://integermarket.com/contact',
+    canonical: 'https://www.integermarket.com/contact',
   },
   openGraph: {
     title: 'Contact | Get Help Finding Reports',
     description: "Need help finding the right market research report? Contact the Integer Market team for queries on reports, purchases, or custom research needs. We're here to help.",
-    url: 'https://integermarket.com/contact',
+    url: 'https://www.integermarket.com/contact',
     type: 'website',
     siteName: 'Integer Market',
     locale: 'en_US',
@@ -131,7 +131,7 @@ export const metadata = {
 }
 
 export default function ContactPage() {
-  const baseUrl = 'https://integermarket.com'
+  const baseUrl = 'https://www.integermarket.com'
 
   const contactPageSchema = {
     '@context': 'https://schema.org',

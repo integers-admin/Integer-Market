@@ -93,7 +93,7 @@ export const metadata = {
   title: 'Terms & Conditions | Integer Market',
   description: 'Review the Terms & Conditions for purchasing market research reports from Integer Market. Understand permitted usage, licensing, and your rights as a buyer.',
   alternates: {
-    canonical: 'https://integermarket.com/term-conditions',
+    canonical: 'https://www.integermarket.com/term-conditions',
   },
   robots: {
     index: true,
@@ -102,7 +102,7 @@ export const metadata = {
   openGraph: {
     title: 'Terms & Conditions | Integer Market',
     description: 'Review the Terms & Conditions for purchasing market research reports from Integer Market. Understand permitted usage, licensing, and your rights as a buyer.',
-    url: 'https://integermarket.com/term-conditions',
+    url: 'https://www.integermarket.com/term-conditions',
     type: 'website',
     siteName: 'Integer Market',
     locale: 'en_US',
@@ -117,7 +117,7 @@ export const metadata = {
 }
 
 export default function TermsConditionsPage() {
-  const baseUrl = 'https://integermarket.com'
+  const baseUrl = 'https://www.integermarket.com'
 
   const webpageSchema = {
     '@context': 'https://schema.org',

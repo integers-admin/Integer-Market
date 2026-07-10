@@ -89,7 +89,7 @@ export function AuthProvider({ children }) {
 
       const response = await axios.post(`${BASE_URL}/checkout/login`, data);
 
-      // console.log("login response:", response);
+      console.log("login response:", response);
 
       if (response?.status === 200) {
         let userData = response?.data?.user;
@@ -99,7 +99,6 @@ export function AuthProvider({ children }) {
         localStorage.setItem("1r#efp@G6*6dIBELf^8j", token);
         localStorage.setItem("&APl1#2CbnABK7xfX49b", JSON.stringify(userData));
 
-        // Cookie (expires in 2 days)
         document.cookie = `1w8YJdmwOhRZylWbmcHX=${token}; path=/; max-age=172800`;
 
         setUser(userData);
@@ -501,6 +500,7 @@ export function AuthProvider({ children }) {
     <AuthContext.Provider
       value={{
         user,
+         setUser,
         isLoading,
         login,
         signup,
@@ -519,6 +519,7 @@ export function AuthProvider({ children }) {
 
 const defaultAuthContext = {
   user: null,
+  setUser: () => {},
   isLoading: false,
   isAuthenticated: false,
   login: async () => false,

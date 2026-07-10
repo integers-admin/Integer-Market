@@ -96,12 +96,12 @@ export const metadata = {
   title: 'About Us | Market Research Reports Provider | Integer Market',
   description: 'Integer Market is a trusted market research reports store specialising in ingredients, technologies, and global industry analysis. We help businesses, investors, and researchers.',
   alternates: {
-    canonical: 'https://integermarket.com/about-us',
+    canonical: 'https://www.integermarket.com/about-us',
   },
   openGraph: {
     title: 'About Us | Market Research Reports Provider | Integer Market',
     description: 'Integer Market is a trusted market research reports store specialising in ingredients, technologies, and global industry analysis. We help businesses, investors, and researchers.',
-    url: 'https://integermarket.com/about-us',
+    url: 'https://www.integermarket.com/about-us',
     type: 'website',
     siteName: 'Integer Market',
     locale: 'en_US',
@@ -124,7 +124,7 @@ export const metadata = {
 }
 
 export default function AboutUsPage() {
-  const baseUrl = 'https://integermarket.com'
+  const baseUrl = 'https://www.integermarket.com'
 
   const aboutPageSchema = {
     '@context': 'https://schema.org',

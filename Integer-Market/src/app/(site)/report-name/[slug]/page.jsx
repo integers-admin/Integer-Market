@@ -557,9 +557,13 @@ import { notFound } from "next/navigation";
 import { cookies } from "next/headers";
 import Script from "next/script";
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+
 
 async function getReportDetail(slug) {
+
+  const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+
+
   if (!slug) return null;
 
   try {
@@ -625,13 +629,13 @@ export async function generateMetadata({ params }) {
       `Get detailed insights on ${title}, including market size, CAGR, industry trends, competitive landscape, and future outlook.`,
 
     alternates: {
-      canonical: `https://integermarket.com/report-name/${slug}`,
+      canonical: `https://www.integermarket.com/report-name/${slug}`,
     },
 
     openGraph: {
       title: `${title}`,
       description: subTitle || `Comprehensive market analysis for ${title}.`,
-      url: `https://integermarket.com/report-name/${slug}`,
+      url: `https://www.integermarket.com/report-name/${slug}`,
       type: "article",
     },
 
@@ -667,7 +671,7 @@ export default async function ReportDetailPage({ params }) {
   const reportPrice = priceInfo?.amount_cents
     ? priceInfo.amount_cents.toString()
     : "0";
-  const baseUrl = "https://integermarket.com";
+  const baseUrl = "https://www.integermarket.com";
 
   const productSchema = {
     "@type": "Product",

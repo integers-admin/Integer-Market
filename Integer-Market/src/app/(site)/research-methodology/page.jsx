@@ -96,12 +96,12 @@ export const metadata = {
   title: 'Research Methodology | Integer Market',
   description: 'Explore the research methodology behind Integer Market reports - covering primary and secondary data collection, market validation, and industry-specific analysis frameworks.',
   alternates: {
-    canonical: 'https://integermarket.com/research-methodology',
+    canonical: 'https://www.integermarket.com/research-methodology',
   },
   openGraph: {
     title: 'Research Methodology | Integer Market',
     description: 'Explore the research methodology behind Integer Market reports - covering primary and secondary data collection, market validation, and industry-specific analysis frameworks.',
-    url: 'https://integermarket.com/research-methodology',
+    url: 'https://www.integermarket.com/research-methodology',
     type: 'website',
     siteName: 'Integer Market',
     locale: 'en_US',
@@ -116,7 +116,7 @@ export const metadata = {
 }
 
 export default function ResearchMethodologyPage() {
-  const baseUrl = 'https://integermarket.com'
+  const baseUrl = 'https://www.integermarket.com'
 
   const webpageSchema = {
     '@context': 'https://schema.org',

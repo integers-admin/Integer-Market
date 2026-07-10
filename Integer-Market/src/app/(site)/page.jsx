@@ -61,14 +61,14 @@ export const metadata = {
   description:
     "Integer Market offers market research reports on ingredients, products, and technologies across food & drink, pharma, nutraceuticals, chemicals, and more. Make smarter business decisions with trusted global industry insights.",
   alternates: {
-    canonical: "https://integermarket.com",
+    canonical: "https://www.integermarket.com",
   },
   openGraph: {
     title:
       "Market Research Reports & Global Industry Analysis | Integer Market",
     description:
       "Integer Market offers market research reports on ingredients, products, and technologies across food & drink, pharma, nutraceuticals, chemicals, and more.",
-    url: "https://integermarket.com",
+    url: "https://www.integermarket.com",
     type: "website",
     siteName: "Integer Market",
     locale: "en_US",
@@ -95,7 +95,7 @@ export const metadata = {
 };
 
 export default function HomePage() {
-  const baseUrl = "https://integermarket.com";
+  const baseUrl = "https://www.integermarket.com";
   const currentDate = new Date().toISOString().split("T")[0];
 
   const webpageSchema = {

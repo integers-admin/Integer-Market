@@ -88,7 +88,7 @@ export const metadata = {
   title: 'Privacy Policy | Integer Market',
   description: "Read Integer Market's Privacy Policy to understand how we collect, store, and protect your personal data when you browse or purchase market research reports.",
   alternates: {
-    canonical: 'https://integermarket.com/privacy-policy',
+    canonical: 'https://www.integermarket.com/privacy-policy',
   },
   robots: {
     index: true,
@@ -97,7 +97,7 @@ export const metadata = {
   openGraph: {
     title: 'Privacy Policy | Integer Market',
     description: "Read Integer Market's Privacy Policy to understand how we collect, store, and protect your personal data when you browse or purchase market research reports.",
-    url: 'https://integermarket.com/privacy-policy',
+    url: 'https://www.integermarket.com/privacy-policy',
     type: 'website',
     siteName: 'Integer Market',
     locale: 'en_US',
@@ -112,7 +112,7 @@ export const metadata = {
 }
 
 export default function PrivacyPolicyPage() {
-  const baseUrl = 'https://integermarket.com'
+  const baseUrl = 'https://www.integermarket.com'
 
   const webpageSchema = {
     '@context': 'https://schema.org',

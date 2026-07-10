@@ -95,13 +95,13 @@ export const metadata = {
   description:
     "Buy market research reports online. Industry analysis, market size, forecasts & trends across pharma, nutraceuticals, consumer goods, health, wellness, beauty & personal care.",
   alternates: {
-    canonical: "https://integermarket.com/report",
+    canonical: "https://www.integermarket.com/report",
   },
   openGraph: {
     title: "Buy Market Research Reports Online | Integer Market",
     description:
       "Buy market research reports online. Industry analysis, market size, forecasts & trends across pharma, nutraceuticals, consumer goods, health, wellness, beauty & personal care.",
-    url: "https://integermarket.com/report",
+    url: "https://www.integermarket.com/report",
     type: "website",
     siteName: "Integer Market",
     locale: "en_US",
@@ -127,7 +127,7 @@ export const metadata = {
 };
 
 export default function ReportsPage() {
-  const baseUrl = "https://integermarket.com";
+  const baseUrl = "https://www.integermarket.com";
 
   const webpageSchema = {
     "@context": "https://schema.org",

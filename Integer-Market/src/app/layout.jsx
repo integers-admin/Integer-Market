@@ -366,7 +366,7 @@ import { Providers } from "./providers";
 import Script from "next/script";
 
 export const metadata = {
-  metadataBase: new URL("https://integermarket.com"),
+  metadataBase: new URL("https://www.integermarket.com"),
   title: {
     default: "Integer Market | Global Market Research Reports",
     // template: "%s | Integer Market",
@@ -387,7 +387,7 @@ export const metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://integermarket.com",
+    url: "https://www.integermarket.com",
     siteName: "Integer Market",
     title: "Integer Market | Global Market Research Reports",
     description:
@@ -413,12 +413,12 @@ export const metadata = {
     },
   },
   alternates: {
-    canonical: "https://integermarket.com",
+    canonical: "https://www.integermarket.com",
   },
 };
 
 export default function RootLayout({ children }) {
-  const baseUrl = "https://integermarket.com";
+  const baseUrl = "https://www.integermarket.com";
 
   return (
     <html lang="en">

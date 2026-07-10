@@ -91,7 +91,7 @@ export const metadata = {
   title: 'Cancellation Policy | Integer Market',
   description: "Learn about Integer Market's cancellation policy for market research report purchases. Simple, transparent terms designed to protect every customer.",
   alternates: {
-    canonical: 'https://integermarket.com/cancellation-policy',
+    canonical: 'https://www.integermarket.com/cancellation-policy',
   },
   robots: {
     index: true,
@@ -100,7 +100,7 @@ export const metadata = {
   openGraph: {
     title: 'Cancellation Policy | Integer Market',
     description: "Learn about Integer Market's cancellation policy for market research report purchases. Simple, transparent terms designed to protect every customer.",
-    url: 'https://integermarket.com/cancellation-policy',
+    url: 'https://www.integermarket.com/cancellation-policy',
     type: 'website',
     siteName: 'Integer Market',
     locale: 'en_US',
@@ -115,7 +115,7 @@ export const metadata = {
 }
 
 export default function CancellationPolicyPage() {
-  const baseUrl = 'https://integermarket.com'
+  const baseUrl = 'https://www.integermarket.com'
 
   const webpageSchema = {
     '@context': 'https://schema.org',

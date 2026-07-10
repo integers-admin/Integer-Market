@@ -19,6 +19,7 @@ import {
 import Logo from "../../components/ui/Logo";
 import { useAuth } from "../../context/AuthContext";
 import { toast } from "react-toastify";
+import GoogleAuthButton from "../../components/GoogleAuthButton";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -155,7 +156,10 @@ export default function Signup() {
           <Logo light className="h-9 w-auto" />
         </Link> */}
 
-        <div className="h-10 w-25 cursor-pointer" onClick={()=>router.push("/")}>
+        <div
+          className="h-10 w-25 cursor-pointer"
+          onClick={() => router.push("/")}
+        >
           <img src="./assets/int_mark_Logo.svg" alt="icon" />
         </div>
 
@@ -169,7 +173,9 @@ export default function Signup() {
             Intelligence that drives better business decisions
           </h2>
           <p className="text-white/70 mb-10 leading-relaxed">
-            In-depth market research reports across consumer goods, health, wellness, ingredients & materials with market size, share, growth forecasts, and competitor insights.
+            In-depth market research reports across consumer goods, health,
+            wellness, ingredients & materials with market size, share, growth
+            forecasts, and competitor insights.
           </p>
           <ul className="space-y-4" role="list">
             {features.map(({ icon: Icon, text }) => (
@@ -431,6 +437,29 @@ export default function Signup() {
                 Sign in
               </Link>
             </p>
+            {/* login with google */}
+            <div className="mt-6">
+              <div className="relative">
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 flex items-center"
+                >
+                  <div className="w-full border-t border-gray-200" />
+                </div>
+                <div className="relative flex justify-center text-sm/6 font-medium">
+                  <span className="bg-white px-6 text-slate-700">
+                    Or continue with
+                  </span>
+                </div>
+              </div>
+
+              <div className="mt-6 grid grid-cols-1 gap-4">
+                <div className="flex justify-center">
+                  <GoogleAuthButton />
+                </div>
+              </div>
+            </div>
+            {/*  */}
           </div>
         </motion.div>
       </div>

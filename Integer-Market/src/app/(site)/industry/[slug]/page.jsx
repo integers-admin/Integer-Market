@@ -510,13 +510,13 @@ export async function generateMetadata({ params }) {
     description,
 
     alternates: {
-      canonical: `https://integermarket.com/industry/${slug}`,
+      canonical: `https://www.integermarket.com/industry/${slug}`,
     },
 
     openGraph: {
       title: `${name}`,
       description,
-      url: `https://integermarket.com/industry/${slug}`,
+      url: `https://www.integermarket.com/industry/${slug}`,
       type: "website",
     },
 
@@ -538,7 +538,7 @@ export default async function IndustryPageRoute({ params }) {
   }
 
   const industryName = industryReports?.name || slug;
-  const baseUrl = "https://integermarket.com";
+  const baseUrl = "https://www.integermarket.com";
 
   const collectionPageSchema = {
     "@context": "https://schema.org",

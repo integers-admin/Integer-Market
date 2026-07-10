@@ -4,7 +4,7 @@ export const metadata = {
   title: 'Forgot Password',
   description: 'Reset your Integer Market account password securely. Enter your email address to receive password reset instructions.',
   alternates: {
-    canonical: 'https://integermarket.com/forgot-password',
+    canonical: 'https://www.integermarket.com/forgot-password',
   },
   robots: {
     index: false,

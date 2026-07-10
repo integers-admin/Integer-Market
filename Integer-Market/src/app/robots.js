@@ -28,7 +28,7 @@ export default function robots() {
         disallow: ['/dashboard', '/checkout', '/login', '/signup', '/api/'],
       },
     ],
-    sitemap: 'https://integermarket.com/sitemap.xml',
-    host: 'https://integermarket.com',
+    sitemap: 'https://www.integermarket.com/sitemap.xml',
+    host: 'https://www.integermarket.com',
   }
 }

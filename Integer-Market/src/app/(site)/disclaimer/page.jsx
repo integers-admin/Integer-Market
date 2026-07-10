@@ -86,7 +86,7 @@ export const metadata = {
   title: 'Disclaimer | Integer Market',
   description: 'Read the Integer Market Disclaimer on the accuracy and intended use of our market research reports. Data is provided for informational purposes to support business research',
   alternates: {
-    canonical: 'https://integermarket.com/disclaimer',
+    canonical: 'https://www.integermarket.com/disclaimer',
   },
   robots: {
     index: true,
@@ -95,7 +95,7 @@ export const metadata = {
   openGraph: {
     title: 'Disclaimer | Integer Market',
     description: 'Read the Integer Market Disclaimer on the accuracy and intended use of our market research reports. Data is provided for informational purposes to support business research',
-    url: 'https://integermarket.com/disclaimer',
+    url: 'https://www.integermarket.com/disclaimer',
     type: 'website',
     siteName: 'Integer Market',
     locale: 'en_US',
@@ -110,7 +110,7 @@ export const metadata = {
 }
 
 export default function DisclaimerPage() {
-  const baseUrl = 'https://integermarket.com'
+  const baseUrl = 'https://www.integermarket.com'
 
   const webpageSchema = {
     '@context': 'https://schema.org',
