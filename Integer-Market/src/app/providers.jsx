@@ -46,7 +46,7 @@ export function Providers({ children }) {
 
   return (
     <GoogleOAuthProvider
-      clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}
+      clientId="186821146219-uat41cnd1031d7iouab3u7vmkck2bn5e.apps.googleusercontent.com"
     >
       <CartProvider>
         <AuthProvider>
