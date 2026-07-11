@@ -12,23 +12,6 @@
 //   )
 // }
 
-
-// wo
-// 'use client'
-// import { AuthProvider } from '../context/AuthContext'
-// import { CartProvider } from '../context/CartContext'
-
-// export function Providers({ children }) {
-//   return (
-//     <CartProvider>
-//       <AuthProvider>
-//         {children}
-//       </AuthProvider>
-//     </CartProvider>
-//   )
-// }
-
-
 'use client'
 
 import { GoogleOAuthProvider } from "@react-oauth/google";

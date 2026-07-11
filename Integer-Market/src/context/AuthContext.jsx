@@ -7,41 +7,41 @@ import { jwtDecode } from "jwt-decode";
 
 const AuthContext = createContext(null);
 
-const MOCK_USER = {
-  id: 1,
-  name: "Alex Johnson",
-  email: "alex@company.com",
-  company: "NutriCorp Ltd.",
-  avatar: null,
-  purchasedReports: [1, 3, 5],
-  // Rich metadata for each purchased report
-  purchasedReportsMeta: [
-    {
-      reportId: 1,
-      purchasedAt: "2025-11-15T10:24:00Z",
-      price: 299,
-      expiryDate: null,
-      orderId: "ORD-10041",
-    },
-    {
-      reportId: 3,
-      purchasedAt: "2025-12-02T14:09:00Z",
-      price: 249,
-      expiryDate: null,
-      orderId: "ORD-10078",
-    },
-    {
-      reportId: 5,
-      purchasedAt: "2026-01-18T08:55:00Z",
-      price: 299,
-      expiryDate: null,
-      orderId: "ORD-10154",
-    },
-  ],
-  joinDate: "2025-11-01",
-  // Mock password for demo validation
-  _password: "password123",
-};
+// const MOCK_USER = {
+//   id: 1,
+//   name: "Alex Johnson",
+//   email: "alex@company.com",
+//   company: "NutriCorp Ltd.",
+//   avatar: null,
+//   purchasedReports: [1, 3, 5],
+//   // Rich metadata for each purchased report
+//   purchasedReportsMeta: [
+//     {
+//       reportId: 1,
+//       purchasedAt: "2025-11-15T10:24:00Z",
+//       price: 299,
+//       expiryDate: null,
+//       orderId: "ORD-10041",
+//     },
+//     {
+//       reportId: 3,
+//       purchasedAt: "2025-12-02T14:09:00Z",
+//       price: 249,
+//       expiryDate: null,
+//       orderId: "ORD-10078",
+//     },
+//     {
+//       reportId: 5,
+//       purchasedAt: "2026-01-18T08:55:00Z",
+//       price: 299,
+//       expiryDate: null,
+//       orderId: "ORD-10154",
+//     },
+//   ],
+//   joinDate: "2025-11-01",
+//   // Mock password for demo validation
+//   _password: "password123",
+// };
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
@@ -89,7 +89,7 @@ export function AuthProvider({ children }) {
 
       const response = await axios.post(`${BASE_URL}/checkout/login`, data);
 
-      console.log("login response:", response);
+      // console.log("login response:", response);
 
       if (response?.status === 200) {
         let userData = response?.data?.user;

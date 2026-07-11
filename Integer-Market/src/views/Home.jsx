@@ -176,7 +176,7 @@ export default function Home() {
   const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const pathname = usePathname();
-// const searchParams = useSearchParams();
+  // const searchParams = useSearchParams();
 
   useEffect(() => {
     document.title =
@@ -345,26 +345,26 @@ export default function Home() {
   // };
 
   const handleAddToCart = (report) => {
-  const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
+    const token = localStorage.getItem("1r#efp@G6*6dIBELf^8j");
 
-  // if (!token) {
-  //   const currentPage =
-  //     pathname +
-  //     (searchParams.toString() ? `?${searchParams.toString()}` : "");
+    // if (!token) {
+    //   const currentPage =
+    //     pathname +
+    //     (searchParams.toString() ? `?${searchParams.toString()}` : "");
 
-  //   router.push(`/login?redirect=${encodeURIComponent(currentPage)}`);
-  //   return;
-  // }
+    //   router.push(`/login?redirect=${encodeURIComponent(currentPage)}`);
+    //   return;
+    // }
 
-  if (!token) {
+    if (!token) {
       router.push(`/login?redirect=${encodeURIComponent(pathname)}`);
       return;
     }
 
-  addToCart(report);
-  // setCartAdded(true);
-  // setTimeout(() => setCartAdded(false), 2000);
-};
+    addToCart(report);
+    // setCartAdded(true);
+    // setTimeout(() => setCartAdded(false), 2000);
+  };
 
   const handleDownload = async (slug) => {
     try {
@@ -443,7 +443,9 @@ export default function Home() {
                 variants={fadeInUp}
                 className="text-base lg:text-lg text-white/75 leading-relaxed mb-8"
               >
-                In-depth market research reports across consumer goods, health, wellness, ingredients & materials with market size, share, growth forecasts, and competitor insights.
+                In-depth market research reports across consumer goods, health,
+                wellness, ingredients & materials with market size, share,
+                growth forecasts, and competitor insights.
               </motion.p>
 
               {/* Search with inline results */}
@@ -843,20 +845,28 @@ export default function Home() {
               >
                 Market intelligence and trade data,
                 <br />
-                <span className="text-primary">in one quick-look platform.</span>
+                <span className="text-primary">
+                  in one quick-look platform.
+                </span>
               </h2>
               <p className="text-slate-400 text-base leading-relaxed mb-6 max-w-lg">
-                ReportInShort pairs the key metrics and snapshots from Integers Market research with live trade data so you can size a market, check the numbers, and spot the movement before you invest in a full report.
+                ReportInShort pairs the key metrics and snapshots from Integers
+                Market research with live trade data so you can size a market,
+                check the numbers, and spot the movement before you invest in a
+                full report.
               </p>
 
               <p className="text-slate-400 text-base leading-relaxed mb-6 max-w-lg">
-                Try 3 reports free, then unlock the full library with a paid plan.
+                Try 3 reports free, then unlock the full library with a paid
+                plan.
               </p>
-
 
               <ul className="space-y-2.5 mb-8 text-left max-w-xs mx-auto lg:mx-0">
                 {[
-                  { icon: Eye, text: "Market snapshots, key metrics & forecasts" },
+                  {
+                    icon: Eye,
+                    text: "Market snapshots, key metrics & forecasts",
+                  },
                   {
                     icon: BarChart,
                     text: "Trade data and import/export insights",
@@ -1083,12 +1093,12 @@ export default function Home() {
                         </div>
 
                         <div className="flex items-center gap-2">
-                          <Link
+                          {/* <Link
                             href={`/report-name/${report.seo_slug}`}
                             className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-primary/10 text-primary text-xs font-bold hover:bg-primary hover:text-white transition-all duration-200 cursor-pointer"
                           >
                             <ArrowRight size={12} aria-hidden="true" />
-                          </Link>
+                          </Link> */}
 
                           {report?.owned ? (
                             <button
@@ -1127,6 +1137,13 @@ export default function Home() {
                               )}
                             </motion.button>
                           )}
+
+                          <Link
+                            href={`/report-name/${report.seo_slug}`}
+                            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-primary/10 text-primary text-xs font-bold hover:bg-primary hover:text-white transition-all duration-200 cursor-pointer"
+                          >
+                            <ArrowRight size={12} aria-hidden="true" />
+                          </Link>
 
                           {/* Primary CTA - Add to Cart */}
 
@@ -1574,9 +1591,9 @@ export default function Home() {
               Start Deciding with Data.
             </h2>
             <p className="text-lg text-white/75 mb-10 max-w-xl mx-auto">
-              Join professionals who rely on Integer Market for
-              strategic market intelligence. Buy only the reports you need - no
-              subscriptions, no commitments.
+              Join professionals who rely on Integer Market for strategic market
+              intelligence. Buy only the reports you need - no subscriptions, no
+              commitments.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link

@@ -87,8 +87,6 @@ export default function GoogleAuthButton() {
         },
       );
 
-      console.log("Google Login:", response);
-
       if (response?.status === 200) {
         let userData = response?.data?.user;
         let token = response?.data?.token;
@@ -103,17 +101,8 @@ export default function GoogleAuthButton() {
         await getCartItems();
 
         router.replace(redirect);
-       
       }
 
-      // if (data?.success) {
-      //   // toast.success(data.message || "Successful");
-
-      //   // // Agar backend token return karta hai
-      //   // localStorage.setItem("token", data.token);
-
-      //   // router.push("/");
-      // }
     } catch (error) {
       console.error("Google Login Error:", error);
 
