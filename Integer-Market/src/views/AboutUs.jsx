@@ -21,9 +21,9 @@ const nikhilPhoto = "/assets/about/nikhil.png";
 const yuktaPhoto = "/assets/about/yukta.png";
 const ayushiPhoto = "/assets/about/ayushi.png";
 const adityaPhoto = "/assets/about/aditya.png";
-const mansiPhoto = "/assets/about/mansi.png";
-const komalPhoto = "/assets/about/komal.png";
-const keskarPhoto = "/assets/about/keskar.png";
+const mansiPhoto = "/assets/about/Dr-Mansi.png";
+const komalPhoto = "/assets/about/komal-kamble.png";
+const keskarPhoto = "/assets/about/keskar_nagnath.png";
 
 const values = [
   {
@@ -280,14 +280,14 @@ export default function AboutUs() {
                 {person.bio}
               </p>
 
-              <a
+              {/* <a
                 href="#"
                 aria-label={`${person.name} on LinkedIn`}
                 className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-primary transition-colors mt-auto"
               >
                 <Linkedin size={13} aria-hidden="true" />
                 LinkedIn
-              </a>
+              </a> */}
             </motion.div>
           ))}
         </motion.div>
