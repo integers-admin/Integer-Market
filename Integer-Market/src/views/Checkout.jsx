@@ -1942,11 +1942,10 @@ function FieldError({ msg }) {
 }
 
 function inputCls(touched, error) {
-  return `w-full px-4 py-3 bg-white border rounded-xl text-slate-800 text-sm placeholder:text-slate-400 focus:outline-none transition-colors ${
-    touched && error
+  return `w-full px-4 py-3 bg-white border rounded-xl text-slate-800 text-sm placeholder:text-slate-400 focus:outline-none transition-colors ${touched && error
       ? "border-red-400 focus:border-red-400"
       : "border-slate-200 focus:border-primary"
-  }`;
+    }`;
 }
 
 // ── Step 1: Contact Details ───────────────────────────────────────────────────
@@ -2043,7 +2042,7 @@ function PaymentStep({
   return (
     <div className="space-y-4">
       <h2 className="text-xl font-bold text-slate-900 mb-5">Payment Method</h2>
-      <div className="flex items-center gap-3 p-4 bg-blue-50 border border-blue-200 rounded-xl">
+      {/* <div className="flex items-center gap-3 p-4 bg-blue-50 border border-blue-200 rounded-xl">
         <ShieldCheck size={18} className="text-blue-600 flex-shrink-0" />
         <div>
           <p className="text-sm font-semibold text-blue-800">
@@ -2053,7 +2052,7 @@ function PaymentStep({
             SSL secured · PCI DSS compliant
           </p>
         </div>
-      </div>
+      </div> */}
 
       <motion.button
         whileHover={{ scale: 1.01 }}
@@ -2088,8 +2087,9 @@ function PaymentStep({
           </>
         ) : (
           <>
-            <Lock size={16} />
-            Pay via Razorpay
+            {/* <Lock size={16} />
+            Pay via Razorpay */}
+            Download Report
           </>
         )}
       </motion.button>
@@ -2235,8 +2235,6 @@ function OrderSummary({
 
 // ── Main Checkout page ────────────────────────────────────────────────────────
 export default function Checkout({ reportId }) {
-
-  console.log("reportId: ",reportId);
 
   const {
     cartItems,
@@ -2437,12 +2435,12 @@ export default function Checkout({ reportId }) {
 
       const payload = reportId
         ? {
-            seo_slug: reportId,
-            coupon_code: reportId ? appliedCoupon : couponCode || "",
-          }
+          seo_slug: reportId,
+          coupon_code: reportId ? appliedCoupon : couponCode || "",
+        }
         : {
-            coupon_code: reportId ? appliedCoupon : couponCode || "",
-          };
+          coupon_code: reportId ? appliedCoupon : couponCode || "",
+        };
 
       const response = await axios.post(endpoint, payload, {
         headers: {
@@ -2451,6 +2449,13 @@ export default function Checkout({ reportId }) {
       });
 
       const order = response.data;
+
+      if (order?.free) {
+        await getCartItems();
+        toast.success("Order confirmed! Access your report in the dashboard.");
+        router.push("/dashboard");
+        return;
+      }
 
       await openCheckout({
         order,
@@ -2518,8 +2523,12 @@ export default function Checkout({ reportId }) {
         },
       });
     } catch (error) {
-      console.log(error);
-      toast.error("Something went wrong");
+      console.log(error.response?.data);
+      const message =
+        error.response?.data?.detail ||
+        error.response?.data?.message ||
+        "Something went wrong. Please try again.";
+      toast.error(message);
     } finally {
       setLoading(false);
     }
@@ -2629,13 +2638,12 @@ export default function Checkout({ reportId }) {
               {STEPS.map((step, i) => (
                 <div key={step.id} className="flex items-center gap-2 flex-1">
                   <div
-                    className={`size-8 rounded-full flex items-center justify-center text-sm font-bold transition-colors flex-shrink-0 ${
-                      i < stepIdx
+                    className={`size-8 rounded-full flex items-center justify-center text-sm font-bold transition-colors flex-shrink-0 ${i < stepIdx
                         ? "bg-primary text-white"
                         : i === stepIdx
                           ? "border-2 border-primary text-primary bg-white"
                           : "border-2 border-slate-200 text-slate-400 bg-white"
-                    }`}
+                      }`}
                   >
                     {i < stepIdx ? <CheckCircle size={16} /> : i + 1}
                   </div>
