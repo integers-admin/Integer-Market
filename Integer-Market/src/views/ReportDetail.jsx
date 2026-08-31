@@ -1893,7 +1893,7 @@ export default function ReportDetail({
                   </div> */}
 
                   {/* FAQ */}
-                  {/* {faqs?.length > 0 && (
+                  {faqs?.length > 0 && (
                     <div className="bg-white rounded-2xl border border-slate-100 p-4 sm:p-6 mb-6">
                       <div className="mb-5 sm:mb-6">
                         <h2 className="text-lg sm:text-xl font-bold text-slate-900">
@@ -1948,7 +1948,7 @@ export default function ReportDetail({
                         })}
                       </div>
                     </div>
-                  )} */}
+                  )}
 
                   
                 </motion.div>
